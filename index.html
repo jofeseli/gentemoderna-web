@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gente Moderna</title>
+    <meta name="description" content="Claridad para vivir, decidir e invertir mejor. Cartas sobre dinero, decisiones, tecnología y libertad personal.">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      (function(){
+        var t = localStorage.getItem("gm-theme");
+        var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = t || (d ? "dark" : "light");
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Gente Moderna">
+        <img class="brand-logo light" src="assets/logo-negro.png" alt="Gente Moderna">
+        <img class="brand-logo dark" src="assets/logo-blanco.png" alt="">
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="cartas.html">Cartas</a>
+        <a href="escritos.html">Escritos</a>
+        <a href="sobre-mi.html">Sobre mí</a>
+        <button class="theme-toggle" type="button" data-theme-toggle>Apagar la luz</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Claridad, dinero, decisiones, libertad</p>
+        <h1>Claridad para vivir, decidir e invertir mejor.</h1>
+        <p class="lede">Escribo sobre dinero, decisiones, Bitcoin, inteligencia artificial y libertad personal. Herramientas útiles, siempre que no las convirtamos en otra forma elegante de perder la cabeza.</p>
+        <div class="actions">
+          <a class="button" href="cartas.html">Recibir cartas</a>
+          <a class="button secondary" href="escritos.html">Leer escritos</a>
+        </div>
+        <p class="micro hero-micro">Dos emails por semana. Sin humo. Sin prometerte una vida nueva antes del jueves.</p>
+      </section>
+
+      <section class="section">
+        <h2>Gente Moderna es un lugar para pensar mejor.</h2>
+        <p class="lede">Para personas inteligentes que no necesitan más ruido, más métodos ni otra plantilla de Notion con nombre en inglés. Necesitan claridad sobre su dinero, su tiempo, sus decisiones y la vida que están construyendo.</p>
+      </section>
+
+      <section class="section">
+        <h2>Cuatro pilares. Ninguna religión.</h2>
+        <div class="grid">
+          <div class="pillar">
+            <h3>Claridad</h3>
+            <p>Ver lo que importa y quitar lo que distrae. Que suena fácil hasta que abres el móvil.</p>
+          </div>
+          <div class="pillar">
+            <h3>Dinero</h3>
+            <p>Entenderlo sin idolatrarlo. El dinero importa porque compra margen, opciones y tranquilidad.</p>
+          </div>
+          <div class="pillar">
+            <h3>Decisiones</h3>
+            <p>Pensar mejor antes de moverse más. A veces la mejor decisión no acelera: simplifica.</p>
+          </div>
+          <div class="pillar">
+            <h3>Libertad</h3>
+            <p>Ganar margen en la vida real. No solo en una hoja de cálculo perfectamente optimista.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Recibe cartas para salir del ruido.</h2>
+        <p class="lede">Dos veces por semana envío ideas breves sobre finanzas personales, criterio, sistemas, Bitcoin, DeFi, IA y libertad. Siempre con una pregunta de fondo: cómo vivir mejor sin complicarse más.</p>
+        <form class="signup" action="https://www.gentemoderna.com" method="post" data-letters-form data-systeme-endpoint="" data-systeme-method="post">
+          <div class="form-row">
+            <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
+            <button class="button" type="submit">Salir del ruido</button>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="privacy" value="accepted" required>
+            <span>Acepto la <a href="https://www.gentemoderna.com/legal/politica-de-privacidad">política de privacidad</a>. Lo mínimo para no convertir esto en una selva legal.</span>
+          </label>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2>Últimos escritos</h2>
+        <div class="list">
+          <a href="escritos.html">
+            <span class="meta">Dinero</span>
+            Dinero como margen, no como identidad
+          </a>
+          <a href="escritos.html">
+            <span class="meta">Tecnología</span>
+            Automatizar no siempre es simplificar
+          </a>
+          <a href="escritos.html">
+            <span class="meta">Decisiones</span>
+            La diferencia entre tener opciones y tener ruido
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <span>Gente Moderna</span>
+      <nav aria-label="Footer">
+        <a href="cartas.html">Cartas</a>
+        <a href="escritos.html">Escritos</a>
+        <a href="legal.html">Legal</a>
+      </nav>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
