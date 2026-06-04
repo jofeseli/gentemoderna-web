@@ -23,3 +23,25 @@
 **Breakpoint móvil a 640px** — el anterior era 720px, demasiado ancho. A 720px muchos tablets en landscape recibían el layout móvil innecesariamente.
 
 **Variables `--sans` y `--serif`** — la stack tipográfica completa se declaraba inline en cada regla. Consolidada en tokens para facilitar cambios futuros.
+
+### Infraestructura
+
+**Vercel como hosting, no Systeme.io** — la web vive en Vercel (HTML estático, deploy automático desde GitHub). Systeme.io se usa solo como backend del formulario de suscripción. Separación limpia: front en Vercel, gestión de suscriptores en Systeme.io.
+
+**DNS: cambio diferido hasta verificar Systeme.io** — decisión consciente de no tocar los registros DNS hasta que el formulario esté probado end-to-end con el endpoint real. El dominio `gentemoderna.com` sigue en el sistema actual. La web se puede probar en la URL provisional de Vercel sin riesgo.
+
+**Registros DNS son independientes por tipo** — MX (correo) y A/CNAME (web) no se interfieren. Cuando se haga el cambio DNS solo se modificará el CNAME/A apuntando a Vercel; los registros MX del correo no se tocan.
+
+## 2026-06-04
+
+### Copy
+
+**Voz editorial: segura, directa, humor seco puntual** — se descarta el tono autoconsciente que pedía perdón por existir ("ya vamos justos de ficción", "hasta respirar raro"). La nueva voz es más adulta: sabe lo que vale, no necesita subrayarlo.
+
+**Humor solo donde emerge de forma natural** — tres momentos concretos en toda la web: "en una hoja de cálculo optimista escrita un domingo por la tarde" (pilar Libertad), "Para eso ya existe Twitter" (sobre-mí), "Sin newsletter de 47 pasos" (hero). Fuera de esos puntos, el copy es limpio y directo.
+
+**"Elimina" en vez de "simplifica"** — en el pilar de Decisiones. "Simplifica" sugiere reorganizar; "elimina" sugiere cortar de raíz. Más honesto con la filosofía del proyecto.
+
+**h1 cambiado a "Pensar mejor antes de moverse más"** — el h1 anterior ("Claridad para vivir, decidir e invertir mejor") era correcto pero genérico. El nuevo es la tesis del proyecto en una línea.
+
+**Referencia de estilo** — voz inspirada en newsletters editoriales directas: frases cortas, sin adornos, con una idea por párrafo. Cada frase gana su sitio o sale.
