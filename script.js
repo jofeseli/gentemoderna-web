@@ -28,9 +28,15 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
 
     const emailInput = form.querySelector('input[type="email"]');
     const submitBtn = form.querySelector('button[type="submit"]');
+    const checkbox = form.querySelector('input[type="checkbox"]');
     const email = emailInput?.value?.trim();
 
     if (!email) return;
+
+    if (checkbox && !checkbox.checked) {
+      showFormError(form, "Debes aceptar la política de privacidad para continuar.");
+      return;
+    }
 
     const originalText = submitBtn.textContent;
     submitBtn.disabled = true;
