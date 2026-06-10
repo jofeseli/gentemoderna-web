@@ -1,9 +1,9 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { email } = req.body;
+  const { email } = req.body || {};
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: "Email inválido" });
@@ -26,16 +26,17 @@ export default async function handler(req, res) {
       body: JSON.stringify({ email }),
     });
 
+    const data = await response.json();
+
     if (response.ok) {
       return res.status(200).json({ ok: true });
     }
 
-    const error = await response.json();
-    console.error("Systeme.io error:", error);
-    return res.status(500).json({ error: "Error al suscribir" });
+    console.error("Systeme.io error:", JSON.stringify(data));
+    return res.status(500).json({ error: "Error al suscribir", detail: data });
 
   } catch (err) {
-    console.error("Fetch error:", err);
+    console.error("Fetch error:", err.message);
     return res.status(500).json({ error: "Error de conexión" });
   }
-}
+};
