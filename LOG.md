@@ -45,3 +45,15 @@
 **h1 cambiado a "Pensar mejor antes de moverse más"** — el h1 anterior ("Claridad para vivir, decidir e invertir mejor") era correcto pero genérico. El nuevo es la tesis del proyecto en una línea.
 
 **Referencia de estilo** — voz inspirada en newsletters editoriales directas: frases cortas, sin adornos, con una idea por párrafo. Cada frase gana su sitio o sale.
+
+## 2026-06-08
+
+### Integración Systeme.io
+
+**Systeme.io no expone endpoint HTML estático** — el formulario se gestiona completamente por JavaScript. No hay un `action` URL en el HTML que se pueda copiar directamente. Intentos de fetch y Chrome inspector confirmaron esto.
+
+**Identificado el `sa` del formulario**: `sa01933177488b6f2031679d2041bd54a2be659078`. Útil como referencia pero no suficiente para integración directa.
+
+**Decisión: API de Systeme.io + Vercel Function** — en vez de iframe (que rompería el diseño) o intentar replicar el JS de Systeme.io, la integración correcta es: formulario custom → Vercel serverless function → API `https://api.systeme.io/api/contacts`. La API Key nunca queda expuesta en el frontend.
+
+**DNS: no tocar hasta que el formulario funcione** — el dominio `gentemoderna.com` sigue en Systeme.io. La web nueva vive en Vercel con URL provisional hasta que la integración esté probada end-to-end.

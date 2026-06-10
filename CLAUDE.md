@@ -61,3 +61,11 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - Voz más segura, directa y con humor seco puntual — sin sarcasmo, sin disculparse por existir
 - Corregidos bugs restantes en cartas.html: method GET→POST, nota de dev eliminada, enlace de privacidad apunta a legal.html local
 - Subida de cambios a GitHub vía API (workaround por conflicto de locks de git en sandbox)
+
+## Sesión 2026-06-08
+
+- Investigación integración formulario Systeme.io
+- Confirmado: Systeme.io usa doble opt-in, gestiona el formulario por JS (no hay endpoint HTML estático)
+- sa del formulario identificado: sa01933177488b6f2031679d2041bd54a2be659078
+- Decisión: integrar vía API de Systeme.io + Vercel Function (no iframe)
+- Pendiente: obtener API Key de Systeme.io para completar la integración

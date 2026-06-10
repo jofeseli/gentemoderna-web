@@ -1,8 +1,6 @@
+// ─── Dark mode ───────────────────────────────────────────
 const root = document.documentElement;
 const button = document.querySelector("[data-theme-toggle]");
-const savedTheme = localStorage.getItem("gm-theme");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-const LETTERS_FALLBACK_URL = "https://www.gentemoderna.com";
 
 function setTheme(theme) {
   root.dataset.theme = theme;
@@ -13,6 +11,8 @@ function setTheme(theme) {
   }
 }
 
+const savedTheme = localStorage.getItem("gm-theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 setTheme(savedTheme || (prefersDark ? "dark" : "light"));
 
 if (button) {
@@ -21,10 +21,53 @@ if (button) {
   });
 }
 
+// ─── Formulario de suscripción ────────────────────────────
 document.querySelectorAll("[data-letters-form]").forEach((form) => {
-  // Replace data-systeme-endpoint with the real Systeme.io endpoint when it is available.
-  const endpoint = form.dataset.systemeEndpoint || LETTERS_FALLBACK_URL;
-  const method = form.dataset.systemeMethod || "get";
-  form.setAttribute("action", endpoint);
-  form.setAttribute("method", method);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const emailInput = form.querySelector('input[type="email"]');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const email = emailInput?.value?.trim();
+
+    if (!email) return;
+
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Enviando…";
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        form.innerHTML = `<p style="padding: 12px 0; font-family: var(--sans); font-size: 0.9rem;">
+          Hecho. Revisa tu correo para confirmar la suscripción.
+        </p>`;
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        showFormError(form, "Algo ha fallado. Inténtalo de nuevo.");
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      showFormError(form, "Error de conexión. Inténtalo de nuevo.");
+    }
+  });
 });
+
+function showFormError(form, message) {
+  let err = form.querySelector(".form-error");
+  if (!err) {
+    err = document.createElement("p");
+    err.className = "form-error micro";
+    err.style.color = "#c0392b";
+    err.style.marginTop = "8px";
+    form.appendChild(err);
+  }
+  err.textContent = message;
+}

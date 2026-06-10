@@ -1,5 +1,21 @@
 # TODO — Gente Moderna Web
 
+## Pendiente urgente — antes de cualquier otra cosa
+
+- [ ] Configurar git remote y hacer push de los docs pendientes (CLAUDE.md, TODO.md, LOG.md):
+  ```bash
+  git remote add origin https://github.com/jofeseli/gentemoderna-web.git
+  git push origin master:main
+  ```
+  Pedirá usuario `jofeseli` y contraseña = token nuevo de github.com/settings/tokens
+
+## PRÓXIMO PASO — Integración formulario Systeme.io
+
+- [ ] Ir a Systeme.io → **Settings → API Keys → Generate** y copiar la API Key
+- [ ] Crear una Vercel Serverless Function (`/api/subscribe.js`) que reciba el email y llame a `https://api.systeme.io/api/contacts` con la API Key en el header `X-API-Key`
+- [ ] Actualizar el formulario en index.html y cartas.html para que haga POST a `/api/subscribe`
+- [ ] Probar el flujo completo: envío → contacto aparece en Systeme.io
+
 ## Próxima sesión — integración Systeme.io y DNS
 
 - [ ] Obtener endpoint real de Systeme.io (panel → formularios → URL de integración)
@@ -33,6 +49,11 @@
 
 - [ ] Open Graph tags (`og:title`, `og:description`, `og:image`) en todas las páginas
 - [ ] `sitemap.xml` y `robots.txt`
+
+## Legal / Cookies (no urgente)
+
+- [ ] Añadir banner de cookies o nota "Este sitio no utiliza cookies de seguimiento" según corresponda
+- [ ] Revisar si Systeme.io instala cookies propias y documentarlo en legal.html
 
 ## Mejoras de diseño (no urgentes)
 
