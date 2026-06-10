@@ -9,12 +9,17 @@
   ```
   Pedirá usuario `jofeseli` y contraseña = token nuevo de github.com/settings/tokens
 
-## PRÓXIMO PASO — Integración formulario Systeme.io
+## PRÓXIMO PASO — Depurar error en formulario
 
-- [ ] Ir a Systeme.io → **Settings → API Keys → Generate** y copiar la API Key
-- [ ] Crear una Vercel Serverless Function (`/api/subscribe.js`) que reciba el email y llame a `https://api.systeme.io/api/contacts` con la API Key en el header `X-API-Key`
-- [ ] Actualizar el formulario en index.html y cartas.html para que haga POST a `/api/subscribe`
-- [ ] Probar el flujo completo: envío → contacto aparece en Systeme.io
+- [ ] Abrir Vercel → proyecto → **Functions** → ver logs de `/api/subscribe` para ver el error exacto
+- [ ] Verificar que la variable `SYSTEME_API_KEY` está presente en el entorno de producción
+- [ ] Probar la función directamente con curl:
+  ```bash
+  curl -X POST https://gentemoderna-web.vercel.app/api/subscribe \
+    -H "Content-Type: application/json" \
+    -d '{"email":"test@test.com"}'
+  ```
+- [ ] Una vez funcionando, probar flujo completo: envío → contacto aparece en Systeme.io → email de confirmación llega
 
 ## Próxima sesión — integración Systeme.io y DNS
 

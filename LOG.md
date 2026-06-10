@@ -57,3 +57,15 @@
 **Decisión: API de Systeme.io + Vercel Function** — en vez de iframe (que rompería el diseño) o intentar replicar el JS de Systeme.io, la integración correcta es: formulario custom → Vercel serverless function → API `https://api.systeme.io/api/contacts`. La API Key nunca queda expuesta en el frontend.
 
 **DNS: no tocar hasta que el formulario funcione** — el dominio `gentemoderna.com` sigue en Systeme.io. La web nueva vive en Vercel con URL provisional hasta que la integración esté probada end-to-end.
+
+## 2026-06-10
+
+### Formulario
+
+**`appearance: none` rompía el checkbox** — la regla CSS global aplicaba a todos los inputs incluyendo checkboxes, eliminando su apariencia nativa y haciéndolos no interactivos. Solución: `input:not([type="checkbox"])`.
+
+**Estructura checkbox separada** — se cambió de `<label>` envolviendo el checkbox a `<input id="...">` + `<label for="...">`. Más semántico y sin conflictos de clic con el enlace interior.
+
+**Vercel Function en CommonJS** — sin `package.json`, Vercel interpreta los archivos `.js` como CommonJS. La función usaba `export default` (ES modules) lo que causaba error silencioso. Corregido a `module.exports`.
+
+**Formulario sigue fallando al enviar** — a pesar de las correcciones, el formulario devuelve error. Causa exacta desconocida — pendiente revisar logs en Vercel → Functions en la próxima sesión.

@@ -69,3 +69,11 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - sa del formulario identificado: sa01933177488b6f2031679d2041bd54a2be659078
 - Decisión: integrar vía API de Systeme.io + Vercel Function (no iframe)
 - Pendiente: obtener API Key de Systeme.io para completar la integración
+
+## Sesión 2026-06-10
+
+- Checkbox de privacidad arreglado: separado label/input con for+id, corregido `appearance:none` en CSS que impedía marcar el checkbox
+- Vercel Function `/api/subscribe.js` creada y desplegada
+- API Key de Systeme.io configurada como variable de entorno en Vercel (`SYSTEME_API_KEY`)
+- Copy pilar Claridad actualizado: "grupo de WhatsApp de los padres"
+- Función corregida a CommonJS (`module.exports`) — el formulario sigue dando error al enviar, pendiente depurar con logs de Vercel
