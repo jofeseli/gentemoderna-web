@@ -342,6 +342,15 @@ label {
 
 .consent span { display: block; }
 
+.consent label {
+  font-weight: 400;
+  font-size: 0.76rem;
+  color: var(--muted);
+  margin-bottom: 0;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
 /* ─── Article list ───────────────────────────────────────── */
 .list {
   display: grid;
