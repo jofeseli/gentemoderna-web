@@ -285,7 +285,7 @@ p { margin: 0; }
   margin-bottom: 12px;
 }
 
-input,
+input:not([type="checkbox"]),
 textarea {
   appearance: none;
   background: var(--field);
@@ -299,11 +299,19 @@ textarea {
   transition: border-color 0.15s;
 }
 
-input:focus,
+input:not([type="checkbox"]):focus,
 textarea:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
   border-color: var(--accent);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
 }
 
 textarea {
@@ -330,8 +338,7 @@ label {
   margin: 10px 0 0;
 }
 
-.consent input {
-  accent-color: var(--accent);
+.consent input[type="checkbox"] {
   flex: 0 0 auto;
   height: 16px;
   margin-top: 2px;
