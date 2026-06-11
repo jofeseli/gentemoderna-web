@@ -51,7 +51,7 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
 
       if (res.ok) {
         form.innerHTML = `<p style="padding: 12px 0; font-family: var(--sans); font-size: 0.9rem;">
-          Hecho. Revisa tu correo para confirmar la suscripción.
+          Hecho. Ya recibirás las próximas cartas.
         </p>`;
       } else {
         submitBtn.disabled = false;
