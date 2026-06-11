@@ -32,7 +32,13 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true });
     }
 
-    console.error("Systeme.io error:", JSON.stringify(data));
+    // Si el email ya existe lo tratamos como éxito — el usuario ya está suscrito
+    const detail = JSON.stringify(data);
+    if (detail.includes("ya se ha utilizado") || detail.includes("already")) {
+      return res.status(200).json({ ok: true });
+    }
+
+    console.error("Systeme.io error:", detail);
     return res.status(500).json({ error: "Error al suscribir", detail: data });
 
   } catch (err) {
