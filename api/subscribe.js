@@ -55,7 +55,7 @@ module.exports = async function handler(req, res) {
       await fetch(`https://api.systeme.io/api/contacts/${contactId}/tags`, {
         method: "POST",
         headers,
-        body: JSON.stringify({ name: "Suscriptor-home" }),
+        body: JSON.stringify({ tagId: 1157284 }),
       });
     }
 
