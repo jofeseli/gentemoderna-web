@@ -15,31 +15,51 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: "API key no configurada" });
   }
 
+  const headers = {
+    "Content-Type": "application/json",
+    "X-API-Key": apiKey,
+    "accept": "application/json",
+  };
+
   try {
-    const response = await fetch("https://api.systeme.io/api/contacts", {
+    // 1. Crear el contacto
+    const createRes = await fetch("https://api.systeme.io/api/contacts", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-API-Key": apiKey,
-        "accept": "application/json",
-      },
+      headers,
       body: JSON.stringify({ email }),
     });
 
-    const data = await response.json();
+    const createData = await createRes.json();
 
-    if (response.ok) {
-      return res.status(200).json({ ok: true });
+    // Si el email ya existe, igualmente añadimos el tag buscando el contacto
+    let contactId = createData?.id;
+
+    if (!createRes.ok) {
+      const detail = JSON.stringify(createData);
+      if (detail.includes("ya se ha utilizado") || detail.includes("already")) {
+        // Buscar el contacto existente para obtener su ID
+        const searchRes = await fetch(
+          `https://api.systeme.io/api/contacts?email=${encodeURIComponent(email)}`,
+          { method: "GET", headers }
+        );
+        const searchData = await searchRes.json();
+        contactId = searchData?.items?.[0]?.id;
+      } else {
+        console.error("Systeme.io error:", detail);
+        return res.status(500).json({ error: "Error al suscribir", detail: createData });
+      }
     }
 
-    // Si el email ya existe lo tratamos como éxito — el usuario ya está suscrito
-    const detail = JSON.stringify(data);
-    if (detail.includes("ya se ha utilizado") || detail.includes("already")) {
-      return res.status(200).json({ ok: true });
+    // 2. Añadir el tag "Suscriptor-home" si tenemos el ID
+    if (contactId) {
+      await fetch(`https://api.systeme.io/api/contacts/${contactId}/tags`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ name: "Suscriptor-home" }),
+      });
     }
 
-    console.error("Systeme.io error:", detail);
-    return res.status(500).json({ error: "Error al suscribir", detail: data });
+    return res.status(200).json({ ok: true });
 
   } catch (err) {
     console.error("Fetch error:", err.message);
