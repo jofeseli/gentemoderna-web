@@ -70,9 +70,16 @@
       <section class="section">
         <h2>Dos cartas por semana. El resto, silencio.</h2>
         <p class="lede">Finanzas personales, Bitcoin, IA y libertad. Cada carta con una pregunta de fondo: cómo vivir mejor sin añadir más ruido al montón.</p>
-        <div class="systeme-embed">
-          <script src="https://www.gentemoderna.com/public/remote/page/416870144ba250cbe2235d66e92bd527a9da7187.js"></script>
-        </div>
+        <form class="signup" action="/api/subscribe" method="post" data-letters-form>
+          <div class="form-row">
+            <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
+            <button class="button" type="submit">Salir del ruido</button>
+          </div>
+          <div class="consent">
+            <input type="checkbox" id="privacy-index" name="privacy" value="accepted" required>
+            <label for="privacy-index">Acepto la <a href="legal.html">política de privacidad</a>. Lo mínimo para no convertir esto en una selva legal.</label>
+          </div>
+        </form>
       </section>
 
       <section class="section">
