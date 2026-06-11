@@ -69,3 +69,29 @@
 **Vercel Function en CommonJS** — sin `package.json`, Vercel interpreta los archivos `.js` como CommonJS. La función usaba `export default` (ES modules) lo que causaba error silencioso. Corregido a `module.exports`.
 
 **Formulario sigue fallando al enviar** — a pesar de las correcciones, el formulario devuelve error. Causa exacta desconocida — pendiente revisar logs en Vercel → Functions en la próxima sesión.
+
+## 2026-06-11
+
+### Integración Systeme.io — resuelto
+
+**Embed de Systeme.io descartado** — se intentó incrustar el formulario de Systeme.io via script embed (iframe). El resultado era visualmente inaceptable: iframe con estilos propios, badge "Funciona con systeme.io", botón genérico "Clic aquí". Decisión: mantener formulario custom propio.
+
+**Single opt-in adoptado** — el doble opt-in de Systeme.io solo funciona a través de sus formularios; la API crea contactos sin enviar email de confirmación. Decisión consciente: single opt-in con checkbox de privacidad explícito. Válido bajo RGPD. Más simple, funciona hoy.
+
+**Error "email ya registrado" tratado como éxito** — Systeme.io devuelve 422 si el email ya existe. La función lo capturaba como error y mostraba "Algo ha fallado". Corregido: si el detalle del error contiene "ya se ha utilizado", la función devuelve 200 OK. El usuario ya estaba suscrito — resultado correcto.
+
+**Mensaje de éxito actualizado** — de "Revisa tu correo para confirmar" (incorrecto, no llega ningún correo) a "Hecho. Ya recibirás las próximas cartas."
+
+**Tag `Suscriptor-home` asignado automáticamente** — al crear el contacto, la función hace un segundo POST a `/api/contacts/{id}/tags` con `{ tagId: 1157284 }`. El endpoint requiere el ID numérico del tag, no el nombre. ID confirmado: 1157284.
+
+**Para contactos ya existentes** — si el email ya está en Systeme.io, la función busca el contacto por email (`GET /api/contacts?email=...`), obtiene el ID y también le asigna el tag.
+
+### Sobre mí — reescritura y diseño
+
+**Párrafos de una frase** — el estilo editorial del sobre mí requiere máximo aire. Cada frase es su propio `<p>`. Para respiros extra entre frases clave se usa la clase CSS `.gap`.
+
+**`.section p + p` y `.gap` añadidos a styles.css** — los párrafos consecutivos dentro de `.section` no tenían margin entre sí (`p { margin: 0 }`). Añadido `p + p { margin-top: 1.1em }` y `.gap { margin-top: 2.8em }`.
+
+**Bio al pie eliminada** — se descartó la firma "Soy José Félix. Profesor, escritor, consultor, padre..." por no representar cómo se define el autor.
+
+**Quote actualizada** — "No quiero una vida diferente. Quiero tocar mejor la que ya tengo." → "No quiero una vida diferente. Quiero afinar la que ya tengo."
