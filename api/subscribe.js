@@ -9,7 +9,7 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Email inválido" });
   }
 
-  const apiKey = process.env.SYSTEME_API_KEY;
+  const apiKey = process.env.SYSTEME_API_KEY || process.env.systemeapykey;
 
   if (!apiKey) {
     return res.status(500).json({ error: "API key no configurada" });
