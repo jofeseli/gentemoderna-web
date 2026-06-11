@@ -77,3 +77,14 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - API Key de Systeme.io configurada como variable de entorno en Vercel (`SYSTEME_API_KEY`)
 - Copy pilar Claridad actualizado: "grupo de WhatsApp de los padres"
 - Función corregida a CommonJS (`module.exports`) — el formulario sigue dando error al enviar, pendiente depurar con logs de Vercel
+
+## Sesión 2026-06-11
+
+- Formulario funcionando: causa del error era que Systeme.io devuelve 422 para emails ya registrados — corregido tratándolo como éxito
+- Embed de Systeme.io probado y descartado: iframe con estilos propios, branding ajeno, visualmente inaceptable
+- Decisión: single opt-in con checkbox — válido bajo RGPD, funciona hoy
+- Tag `Suscriptor-home` (ID: 1157284) asignado automáticamente en cada suscripción vía `POST /api/contacts/{id}/tags` con `{ tagId: 1157284 }`
+- Mensaje de éxito actualizado: "Hecho. Ya recibirás las próximas cartas."
+- `sobre-mi.html` reescrito: máximo aire, frases como párrafos individuales, clase `.gap` para respiros extra
+- Añadido `.section p + p { margin-top: 1.1em }` y `.gap { margin-top: 2.8em }` a styles.css
+- Quote actualizada: "No quiero una vida diferente. Quiero afinar la que ya tengo."
