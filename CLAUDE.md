@@ -88,3 +88,19 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - `sobre-mi.html` reescrito: máximo aire, frases como párrafos individuales, clase `.gap` para respiros extra
 - Añadido `.section p + p { margin-top: 1.1em }` y `.gap { margin-top: 2.8em }` a styles.css
 - Quote actualizada: "No quiero una vida diferente. Quiero afinar la que ya tengo."
+
+## Sesión 2026-06-12
+
+- Leída Masterclass "Tela de araña" (Isra Bravo, 14 páginas) — principios aplicados a la web
+- `index.html` reescrito: formulario en el hero, sección burla del mercado, sección autoridad por experiencia, h1 definitivo, lede sin "sin recetas ni gurús"
+- H1 definitivo: "Todo el mundo tiene un método. Pero, ¿tienen criterio?"
+- Lede: "Para quien ya tiene suficiente información y todavía no tiene claro qué hacer con ella."
+- `sobre-mi.html` reescrito: apertura con historia del desierto (Melilla→Sáhara, coches encallados, hombre con pala), metáfora de la pala como autoridad, cero credentials profesionales
+- `<img class="prose-img" src="assets/hombre-pala.jpg">` añadida al final de la historia — **pendiente: copiar el archivo a assets/**
+- CSS `.prose-img`: grayscale(60%), opacity 0.88, editorial treatment
+- `cartas.html` y `escritos.html`: lede y secciones mejoradas, formulario en escritos
+- `legal.html` reescrito con datos reales (José Félix Martínez Moratinos, NIF, dirección, email, tel)
+- Banner no-cookies en `script.js` + estilos en `styles.css`
+- Prohibiciones de copy confirmadas: NUNCA "no soy un gurú", "no vendo humo", "sin recetas ni gurús"
+- Lead magnet audio: buena idea, pendiente de grabar. No añadir promesa sin contenido real.
+- Todos los cambios subidos a GitHub vía API REST
