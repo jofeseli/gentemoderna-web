@@ -95,3 +95,55 @@
 **Bio al pie eliminada** — se descartó la firma "Soy José Félix. Profesor, escritor, consultor, padre..." por no representar cómo se define el autor.
 
 **Quote actualizada** — "No quiero una vida diferente. Quiero tocar mejor la que ya tengo." → "No quiero una vida diferente. Quiero afinar la que ya tengo."
+
+## 2026-06-12
+
+### Copy — `index.html`
+
+**Reescritura completa de la home con principios "Tela de araña" (Isra Bravo)** — la home anterior era informativa. La nueva está diseñada para capturar: un único destino (email), formulario en el hero, sección que se burla del mercado sin nombrarlo, sección de autoridad por experiencia (no credenciales).
+
+**H1 definitivo: "Todo el mundo tiene un método. Pero, ¿tienen criterio?"** — se probaron varias versiones. Esta ganó por ser la única que activa el instinto del lector: "¿tienen?" apunta directamente al que está leyendo.
+
+**Lede del hero cambiado** — "Sin recetas ni gurús" eliminado explícitamente. Genera el efecto contrario: convoca la idea que niega. Reemplazado por: "Para quien ya tiene suficiente información y todavía no tiene claro qué hacer con ella."
+
+**Sección de burla al mercado añadida** — "El método definitivo / jubilado con cuarenta / lo que el sistema prefiere que no sepas / y todos odian el spam". No nombra a nadie, el lector lo proyecta. Termina con la tesis: problema de criterio, no de información.
+
+**Sección "De dónde sale esto" añadida** — autoridad por consecuencias reales, no por títulos. "Algunas han salido bien. Bastantes, regular." Más creíble que cualquier credencial.
+
+**Pilar Claridad actualizado** — "como el grupo de WhatsApp de los padres". Específico y doméstico, más reconocible que abstracciones.
+
+### Copy — `sobre-mi.html`
+
+**Reescritura completa — apertura con historia del desierto** — se descarta cualquier presentación de credentials. El sobre mí abre con la historia concreta: Melilla → Sáhara, coches encallados en la duna, hombre con pala que aparece de la nada, cava y se va. El autor lo fotografió (estudiaba técnico en fotografía).
+
+**Metáfora de la pala** — el pivot del "por qué te cuento esto" conecta la historia con la web: "llevo tiempo en el desierto —el del dinero, las decisiones, la tecnología— y a estas alturas tengo la pala." Sin decir "no soy un gurú". Sin disculparse.
+
+**Prohibiciones de copy confirmadas** — NUNCA usar "no soy un gurú", "no vendo humo", "sin recetas ni gurús". Generan el efecto contrario.
+
+**Foto del hombre de la pala** — `<img class="prose-img" src="assets/hombre-pala.jpg">` añadida justo al final de la sección del desierto. CSS: `grayscale(60%)`, `opacity: 0.88`, `contrast(1.05)`. Tratamiento desaturado / editorial. **Pendiente: copiar el archivo real a `assets/hombre-pala.jpg`.**
+
+### Legal — `legal.html`
+
+**Reescritura completa con datos reales** — responsable: José Félix Martínez Moratinos, NIF 45304658V, C/ Patio del Cura 6 2ºA 52005 Melilla, jof@gentemoderna.com. Encargados: Systeme.io (newsletter) + Vercel (hosting). Derechos RGPD, AEPD, LSSICE art. 10.
+
+**Sección cookies: "Esta página no usa cookies. Puedes navegar en paz."** — legalmente correcto. El localStorage no es una cookie. Se añade nota explicativa para los curiosos.
+
+### UX — banner no-cookies
+
+**Cookie notice añadida en `script.js`** — aparece al entrar, se cierra con "Ok, genial". Estado guardado en `localStorage("gm-notice")`. No vuelve a aparecer una vez cerrado.
+
+**Estilos del banner en `styles.css`** — `position: fixed; bottom: 24px; centered`. En móvil: pegado al borde inferior, full width, sin bordes laterales ni radio.
+
+### CSS
+
+**`.prose-img` añadida a `styles.css`** — para imágenes editoriales dentro del flujo de texto. `width: 100%`, `grayscale(60%)`, `opacity: 0.88`, `margin-top: 2.4em`, `border-radius: 2px`.
+
+### Masterclass Tela de araña — decisiones aplicadas
+
+**Formulario en cada página** — index (hero + al final), cartas, escritos, sobre-mi. Un único destino. Sin CTAs de salida.
+
+**Primer escalón + segundo escalón** — la home lleva al email. El email lleva a las cartas. Cada página tiene un único próximo paso.
+
+**Especificidad en la promesa** — "para quien ya tiene suficiente información" es más específico que "claridad y libertad". El lector correcto se reconoce.
+
+**Lead magnet descartado (por ahora)** — se consideró minicurso de finanzas y audio de bienvenida. Decisión: no añadir promesa que no esté lista. El audio es la mejor opción cuando esté grabado. Fácil de producir, inesperado, personal.
