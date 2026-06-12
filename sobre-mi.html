@@ -116,9 +116,16 @@
         <p>Algo más parecido a una conversación honesta que a un discurso inspirador.</p>
         <p>Las cartas son el sitio más honesto que tengo.</p>
         <p class="micro">Dos veces por semana. Sin más ruido del necesario.</p>
-        <div class="actions">
-          <a class="button" href="cartas.html">Recibir las cartas →</a>
-        </div>
+        <form class="signup" action="/api/subscribe" method="post" data-letters-form>
+          <div class="form-row">
+            <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
+            <button class="button" type="submit">Recibir las cartas</button>
+          </div>
+          <div class="consent">
+            <input type="checkbox" id="privacy-sobre-mi" name="privacy" value="accepted" required>
+            <label for="privacy-sobre-mi">Acepto la <a href="legal.html">política de privacidad</a>. Lo mínimo para no convertir esto en una selva legal.</label>
+          </div>
+        </form>
       </section>
 
     </main>
