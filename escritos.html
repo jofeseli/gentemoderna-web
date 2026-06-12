@@ -52,10 +52,17 @@
       </section>
       <section class="section">
         <h2>Las cartas son el archivo vivo.</h2>
-        <p class="lede">Los mejores envíos terminan aquí, un poco más ordenados y con menos arrepentimiento tipográfico.</p>
-        <div class="actions">
-          <a class="button secondary" href="cartas.html">Recibir cartas</a>
-        </div>
+        <p class="lede">Los mejores envíos terminan aquí. Pero la conversación pasa primero por el email.</p>
+        <form class="signup" action="/api/subscribe" method="post" data-letters-form>
+          <div class="form-row">
+            <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
+            <button class="button" type="submit">Recibir las cartas</button>
+          </div>
+          <div class="consent">
+            <input type="checkbox" id="privacy-escritos" name="privacy" value="accepted" required>
+            <label for="privacy-escritos">Acepto la <a href="legal.html">política de privacidad</a>. Lo mínimo para no convertir esto en una selva legal.</label>
+          </div>
+        </form>
       </section>
     </main>
     <footer class="site-footer">
