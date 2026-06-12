@@ -66,6 +66,21 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
   });
 });
 
+// ─── Aviso no-cookies ─────────────────────────────────────
+(function () {
+  if (localStorage.getItem("gm-notice")) return;
+  const el = document.createElement("div");
+  el.className = "cookie-notice";
+  el.innerHTML =
+    "<p>Esta página no usa cookies ni rastrea tu navegación.</p>" +
+    '<button class="button" type="button">Ok, genial</button>';
+  document.body.appendChild(el);
+  el.querySelector("button").addEventListener("click", function () {
+    localStorage.setItem("gm-notice", "1");
+    el.remove();
+  });
+}());
+
 function showFormError(form, message) {
   let err = form.querySelector(".form-error");
   if (!err) {
