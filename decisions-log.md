@@ -63,3 +63,25 @@ Separación limpia: front en Vercel (HTML estático, deploy automático desde Gi
 
 **Decisión permanente — No tocar DNS hasta verificar el formulario con suscriptores reales**
 Los registros MX del correo no se tocan en ningún caso. El cambio DNS se hace solo cuando la web esté completa y el formulario probado.
+
+---
+
+## Sesión 2026-06-13 (segunda parte)
+
+**2026-06-13 — Estructura home en dos fases con toggle**
+La home se divide en fase 1 (siempre visible) y fase 2 (oculta tras un botón). El botón es un `<details>/<summary>` nativo estilizado como `.button`. La frase del botón es "¿Cómo puedo mejorar lo que ya tengo?" — es la pregunta-pivote que conecta la fase 1 (quiénes son esas personas) con la fase 2 (por qué el mercado falla y qué sí funciona). Sin JS, accesible por defecto.
+
+**2026-06-13 — "¿Cómo?" eliminado como sección independiente**
+La sección collapsible "¿Cómo?" (Echando el freno macareno... hasta PAZ) se eliminó de la fase 1. La pregunta "¿Cómo?" queda implícita en el texto "Haciéndose una única pregunta." y el botón la responde al abrirse. Más tensión, menos explicación.
+
+**2026-06-13 — "Pero igual cuela..." añadido al hero**
+Después de "Es coña." el lector necesita un micro-respiro cómplice antes del formulario. "Pero igual cuela..." cumple esa función sin romper el ritmo.
+
+**2026-06-13 — Testimonios con guiones, sin cursiva**
+Los tres testimonios de lectores van con guión largo y sin `<em>`. Más directos, menos publicitarios.
+
+**2026-06-13 — Jim Carrey quote como .quote**
+La cita de Jim Carrey ("Ojalá todos pudieran ser ricos y famosos...") va en bloque `.quote` (borde izquierdo accent, color muted) sin cursiva. Contraste visual claro respecto al texto corrido.
+
+**2026-06-13 — "Permiso de rodillas" como contraste final**
+Versión definitiva del contraste negativo: "Si vas a seguir pidiendo permiso de rodillas a tu jefe para llevar a tu hijo al médico, no te suscribas." La versión anterior ("toda la vida") se suavizaba sola. "De rodillas" es más visual e incómodo — que es el objetivo.
