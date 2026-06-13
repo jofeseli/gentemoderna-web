@@ -29,8 +29,9 @@
 
     <main>
 
+      <!-- 1. Titular + 2. Coña + 3. Cajetilla -->
       <section class="hero">
-        <p class="eyebrow">Claridad, dinero, libertad</p>
+        <p class="eyebrow">Claridad, dinero, decisiones, libertad</p>
         <h1>Las personas que disfrutan de cada instante de su vida, ¿cómo lo hacen?</h1>
         <p class="lede">Reciben mis cartas los miércoles y los domingos.</p>
         <p class="lede">Es coña.</p>
@@ -44,9 +45,9 @@
             <label for="privacy-hero">Acepto la <a href="legal.html">política de privacidad</a>. Lo mínimo para que internet no se ponga nervioso.</label>
           </div>
         </form>
-        <p class="micro hero-micro"><a href="sobre-mi.html">¿Quién escribe esto? →</a></p>
       </section>
 
+      <!-- 4. Te aseguro... -->
       <section class="section">
         <p>Pero te aseguro que no los verás viendo el p*to móvil.</p>
         <p>Ni revisar la cuenta bancaria cada cinco minutos.</p>
@@ -54,47 +55,92 @@
         <p class="gap">Esas personas han cultivado su propio criterio.</p>
       </section>
 
+      <!-- 5+6. ¿Cómo? desplegable → hasta PAZ -->
       <section class="section">
-        <h2>¿Cómo?</h2>
-        <p>Echando el freno macareno.</p>
-        <p>Parándose a pensar.</p>
-        <p>Ganando claridad mental.</p>
-        <p class="gap">Así, toman mejores decisiones.</p>
-        <p>No más decisiones. He dicho mejores decisiones.</p>
-        <p>No es lo mismo.</p>
-        <p class="gap">Eso repercute en su dinero.</p>
-        <p>Mejores decisiones = Economía más saneada.</p>
-        <p>Siempre.</p>
-        <p class="gap">Todo eso te acerca, sin que te des cuenta, a lo que en el fondo quieres.</p>
-        <p>Ser libre.</p>
-        <p class="gap quote">La libertad da PAZ.</p>
-        <p class="quote">El hombre no quiere felicidad, quiere PAZ.</p>
+        <details class="collapsible">
+          <summary><h2>¿Cómo?</h2></summary>
+          <div class="collapsible-body">
+            <p>Echando el freno macareno.</p>
+            <p>Parándose a pensar.</p>
+            <p>Ganando claridad mental.</p>
+            <p class="gap">Así, toman mejores decisiones.</p>
+            <p>No más decisiones. He dicho mejores decisiones.</p>
+            <p>No es lo mismo.</p>
+            <p class="gap">Eso repercute en su dinero.</p>
+            <p>Mejores decisiones = Economía más saneada.</p>
+            <p>Siempre.</p>
+            <p class="gap">Todo eso te acerca, sin que te des cuenta, a lo que en el fondo quieres.</p>
+            <p>Ser libre.</p>
+            <p class="gap quote">La libertad da PAZ.</p>
+            <p class="quote">El hombre no quiere felicidad, quiere PAZ.</p>
+          </div>
+        </details>
       </section>
 
-      <section class="section">
-        <p class="muted"><em>"Me parece muy bueno para salir a la calle a vivir."</em></p>
-        <p class="muted"><em>"Bonita carta y dura."</em></p>
-        <p class="muted"><em>"Amigo, amo leerte."</em></p>
-        <p class="gap">Pero si te da por recibir las cartas, vas a encontrar:</p>
-        <p class="gap">— Cartas con títulos como <em>"No ganes más porque no te da la gana."</em> De eso van.</p>
-        <p>— Por qué el dinero nunca ha sido el problema. Y qué sí lo es.</p>
-        <p>— Una forma de pensar la libertad que no empieza ni acaba con un plan de pensiones.</p>
-      </section>
+      <!-- Botón que despliega la fase 2 -->
+      <details class="phase-toggle">
+        <summary class="phase-btn">¿Cómo puedo mejorar lo que ya tengo?</summary>
+        <div class="phase-body">
 
-      <section class="section">
-        <p>Si quieres seguir pidiendo permiso a tu jefe toda la vida para poder llevar a tu hijo al médico, no te suscribas.</p>
-        <p class="gap micro">Dos cartas por semana: claridad, dinero, decisiones y libertad.</p>
-        <form class="signup" action="/api/subscribe" method="post" data-letters-form>
-          <div class="form-row">
-            <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
-            <button class="button" type="submit">Recibir las cartas</button>
-          </div>
-          <div class="consent">
-            <input type="checkbox" id="privacy-index" name="privacy" value="accepted" required>
-            <label for="privacy-index">Acepto la <a href="legal.html">política de privacidad</a>. Lo mínimo para no convertir esto en una selva legal.</label>
-          </div>
-        </form>
-      </section>
+          <!-- Burlarse del mercado -->
+          <section class="section">
+            <p>Llevo en la jungla digital desde 2019. A saco.</p>
+            <p>Y la gente no cambia. Como la política.</p>
+            <p>Todo el mundo quiere lo mismo: mucha pasta, muy rápido, muy fácil.</p>
+            <p>No les culpo. Cada día entiendo mejor al ser humano.</p>
+            <p class="gap">Aunque Jim Carrey lo resumió mejor que yo:</p>
+            <p class="quote">Ojalá todos pudieran ser ricos y famosos para darse cuenta de que eso no es la respuesta.</p>
+            <p class="micro" style="padding-left:18px;margin-top:8px">— Jim Carrey</p>
+            <p class="gap">Como ese sueño no muere...</p>
+            <p>...el mercado se lo trabaja.</p>
+            <p class="gap">"Aprende con IA a ganar 84 euros la hora viendo mi vídeo de 20 minutos."</p>
+            <p>"Gana 500 euros extra al mes con apuestas cruzadas."</p>
+            <p>"Hazte trader. Yo te dejo mi dinero. Tú lo usas. Pero gano yo. No te preocupes."</p>
+            <p class="gap">Primero de parque de bolas.</p>
+            <p class="gap">Si tu patrimonio son 2.000€, no vas a generar un sueldo invirtiendo.</p>
+            <p>Lo que sí vas a conseguir es perder el dinero del curso. Y parte del tiempo que te queda de vida.</p>
+          </section>
+
+          <!-- Autoridad -->
+          <section class="section">
+            <p>Yo tengo claro que mi método solo me vale a mí.</p>
+            <p>Si haces lo mismo que yo, no vas a llegar al mismo sitio.</p>
+            <p>Eso lo entiende hasta mi hija de tres años.</p>
+            <p class="gap">Tampoco vas a ganar lo mismo. Ni vas a tener mi paz diaria.</p>
+            <p class="gap">Pero lo bueno es que no voy a tratar de vendértelo.</p>
+            <p>Solo te hablaré de las cosas que he desechado. Y las que he adaptado para ganar margen en mi vida.</p>
+            <p class="gap">Llevo años buscando el siguiente curso. El siguiente conocimiento. El siguiente acompañamiento.</p>
+            <p>Para acabar dándome cuenta de que lo que ya tenía era mucho más importante que lo que buscaba en internet.</p>
+            <p>Mi propia vida. Mi cuerpo.</p>
+          </section>
+
+          <!-- Cajetilla final -->
+          <section class="section">
+            <h2>Quienes reciben las cartas me responden:</h2>
+            <p class="gap">— "Me parece muy bueno para salir a la calle a vivir."</p>
+            <p class="gap">— "Bonita carta y dura."</p>
+            <p class="gap">— "Amigo, amo leerte."</p>
+            <p class="gap">Si no te convencen los 3 comentarios de los amigos que he sobornado, quizá esto sí.</p>
+            <p class="gap">— Cartas con títulos como "No ganes más porque no te da la gana." De eso van.</p>
+            <p class="gap">— Por qué el dinero nunca ha sido el problema. Y qué sí lo es.</p>
+            <p class="gap">— Una forma de pensar la libertad que no empieza ni acaba con un plan de pensiones.</p>
+            <p class="gap">Si vas a seguir pidiendo permiso de rodillas a tu jefe para llevar a tu hijo al médico, no te suscribas.</p>
+            <p class="gap micro">Dos cartas por semana: claridad, dinero, decisiones y libertad.</p>
+            <form class="signup" action="/api/subscribe" method="post" data-letters-form>
+              <div class="form-row">
+                <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
+                <button class="button" type="submit">Recibir las cartas</button>
+              </div>
+              <div class="consent">
+                <input type="checkbox" id="privacy-index" name="privacy" value="accepted" required>
+                <label for="privacy-index">Acepto la <a href="legal.html">política de privacidad</a>. Lo mínimo para no convertir esto en una selva legal.</label>
+              </div>
+            </form>
+            <p class="micro hero-micro"><a href="sobre-mi.html">¿Quién escribe esto? →</a></p>
+          </section>
+
+        </div>
+      </details>
 
     </main>
 
