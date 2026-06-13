@@ -112,7 +112,7 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - Lead magnet audio: buena idea, pendiente de grabar. No añadir promesa sin contenido real.
 - Todos los cambios subidos a GitHub vía API REST
 
-## Sesión 2026-06-13
+## Sesión 2026-06-13 (primera parte)
 
 - `escritos.html` eliminada de la navegación — página huérfana, sin enlaces activos
 - Creada `pala.html`: historia completa del desierto (Melilla→Sáhara, hombre con pala) + "por qué te cuento esto" + formulario. Esta es la historia que antes abría sobre-mi.html
@@ -123,3 +123,39 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - Footers actualizados: sin referencias a escritos ni cartas
 - Estructura final: 3 pestañas activas — Home (logo) | Sobre mí | Pala
 - Tela de araña completa: Home → Sobre mí → Pala → email
+
+## Sesión 2026-06-13 (segunda parte — reescritura home completa)
+
+### Estructura final de `index.html`
+
+**Fase 1 (siempre visible):**
+- Eyebrow: "Claridad, dinero, decisiones, libertad" (4 pilares — NUNCA quitar ninguno)
+- H1: "Las personas que disfrutan de cada instante de su vida, ¿cómo lo hacen?"
+- "Reciben mis cartas los miércoles y los domingos."
+- "Es coña."
+- "Pero igual cuela..."
+- Formulario (cajetilla primera)
+- "Te aseguro que a esas personas no las ves enganchadas 24/7 al p*to móvil. Más bien, se sientan contigo y te miran a los ojos."
+- "Tampoco revisan la cuenta bancaria cada cinco minutos."
+- "Ni tampoco están pensando a qué bar ir para ahorrarse 1,50€ la caña."
+- "Son personas que han cultivado su propio criterio."
+- "Haciéndose una única pregunta."
+- **Botón `<details>/<summary>`: "¿Cómo puedo mejorar lo que ya tengo?"** → despliega la fase 2
+
+**Fase 2 (oculta, se despliega al hacer clic en el botón):**
+- Sección "burlarse del mercado": jungla digital desde 2019, Jim Carrey quote (.quote), cursos de parque de bolas, 2.000€
+- Sección "autoridad": mi método solo me vale a mí, mi hija de tres años, mi propia vida, mi cuerpo
+- Cajetilla final: testimonios con guiones (sin cursiva) + frase puente "Si no te convencen los amigos que he sobornado..." + 3 balas + contraste "permiso de rodillas" + micro + formulario + "¿Quién escribe esto? →"
+
+### CSS añadido en `styles.css`
+- `.collapsible` / `.collapsible-body` — para el toggle de ¿Cómo? (quedó en CSS aunque el elemento se eliminó del HTML; no rompe nada)
+- `.phase-toggle` / `.phase-btn` — botón negro tipo `.button` que actúa como `<summary>` del `<details>` de fase 2
+
+### Copy prohibido (permanente)
+- NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús"
+- NUNCA: "sin ruido" como CTA o descriptor
+- NUNCA quitar uno de los 4 pilares del eyebrow sin instrucción explícita
+
+### Jim Carrey quote
+Texto exacto usado: "Ojalá todos pudieran ser ricos y famosos para darse cuenta de que eso no es la respuesta."
+Estilo: clase `.quote` (borde izquierdo accent, sin cursiva)
