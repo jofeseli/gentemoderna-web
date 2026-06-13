@@ -72,13 +72,16 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
   const el = document.createElement("div");
   el.className = "cookie-notice";
   el.innerHTML =
-    "<p>Esta página no usa cookies ni rastrea tu navegación.</p>" +
-    '<button class="button" type="button">Ok, genial</button>';
+    "<p>Esta página no usa cookies. Su único objetivo es tu email. ¿Se nota?</p>" +
+    '<div style="display:flex;gap:8px;flex-shrink:0">' +
+    '<button class="button" type="button" data-dismiss>Sí, se nota un poco</button>' +
+    '<button class="button secondary" type="button" data-dismiss>No, no lo había notado</button>' +
+    '</div>';
   document.body.appendChild(el);
-  el.querySelector("button").addEventListener("click", function () {
+  el.querySelectorAll("[data-dismiss]").forEach(function(btn) { btn.addEventListener("click", function () {
     localStorage.setItem("gm-notice", "1");
     el.remove();
-  });
+  }); });
 }());
 
 function showFormError(form, message) {
