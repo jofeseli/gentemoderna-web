@@ -467,6 +467,102 @@ ul.clean li {
   opacity: 0.88;
 }
 
+
+/* ─── Collapsible ────────────────────────────────────────── */
+.collapsible {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.collapsible summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.collapsible summary::-webkit-details-marker { display: none; }
+
+.collapsible summary h2 {
+  transition: color 0.15s;
+}
+
+.collapsible summary:hover h2 {
+  color: var(--accent);
+}
+
+.collapsible summary::after {
+  content: '↓';
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.collapsible[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.collapsible-body {
+  margin-top: 24px;
+}
+
+.collapsible-body p + p { margin-top: 1.1em; }
+.collapsible-body p.gap { margin-top: 2.8em; }
+
+/* ─── Phase toggle (botón desplegable de fase) ───────────── */
+.phase-toggle {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: min(var(--max), 100%);
+}
+
+.phase-btn {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--text);
+  border: 1.5px solid var(--text);
+  border-radius: 3px;
+  color: var(--bg);
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  padding: 0 20px;
+  margin-top: 40px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.phase-btn::-webkit-details-marker { display: none; }
+
+.phase-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.phase-toggle[open] .phase-btn::after {
+  content: ' ↑';
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.phase-body {
+  margin: 0;
+  padding: 0;
+}
+
 /* ─── Aviso no-cookies ───────────────────────────────────── */
 .cookie-notice {
   position: fixed;
