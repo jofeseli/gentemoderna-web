@@ -485,7 +485,7 @@ ul.clean li {
   font-size: 0.8rem;
   color: var(--muted);
   z-index: 200;
-  max-width: min(520px, calc(100% - 48px));
+  max-width: min(680px, calc(100% - 48px));
 }
 
 .cookie-notice p {
