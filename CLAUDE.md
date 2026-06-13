@@ -6,17 +6,24 @@ Sitio estático de Gente Moderna: newsletter editorial sobre dinero, decisiones,
 
 ```
 gentemoderna-web/
-├── index.html        Página principal
-├── cartas.html       Página de suscripción a la newsletter
-├── escritos.html     Archivo de artículos
+├── index.html        Página principal (Home)
 ├── sobre-mi.html     Página personal
+├── pala.html         Historia del desierto + metáfora de la pala
+├── cartas.html       Página de suscripción (sin enlace en nav, existe como landing)
 ├── legal.html        Política de privacidad y aviso legal
 ├── styles.css        Estilos globales (tokens, componentes, responsive)
-├── script.js         Dark mode + integración Systeme.io
+├── script.js         Dark mode + integración Systeme.io + banner no-cookies
 └── assets/
     ├── logo-negro.png
-    └── logo-blanco.png
+    ├── logo-blanco.png
+    └── hombre-pala.jpg   ← PENDIENTE: copiar manualmente
 ```
+
+## Navegación activa
+
+Tres pestañas: **Home** (logo) | **Sobre mí** | **Pala**
+
+Tela de araña: Home → Sobre mí ("¿Quién escribe esto? →") → Pala ("¿ya, pero quién eres tú? →") → formulario email
 
 ## Stack
 
@@ -104,3 +111,15 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 - Prohibiciones de copy confirmadas: NUNCA "no soy un gurú", "no vendo humo", "sin recetas ni gurús"
 - Lead magnet audio: buena idea, pendiente de grabar. No añadir promesa sin contenido real.
 - Todos los cambios subidos a GitHub vía API REST
+
+## Sesión 2026-06-13
+
+- `escritos.html` eliminada de la navegación — página huérfana, sin enlaces activos
+- Creada `pala.html`: historia completa del desierto (Melilla→Sáhara, hombre con pala) + "por qué te cuento esto" + formulario. Esta es la historia que antes abría sobre-mi.html
+- `sobre-mi.html` reescrito: abre con "Soy Jof." + teaser "¿No te convence? Normal. Acabamos de conocernos. / ¿ya, pero quién eres tú? →" enlazando a pala.html. Sección de historia del desierto eliminada de aquí
+- Sección "Últimos escritos" eliminada de `index.html` (tenía placeholders sin contenido real)
+- Link "O leer los escritos primero →" en hero cambiado a "¿Quién escribe esto? →" apuntando a sobre-mi.html
+- Nav unificado en todas las páginas: Sobre mí | Pala | toggle tema
+- Footers actualizados: sin referencias a escritos ni cartas
+- Estructura final: 3 pestañas activas — Home (logo) | Sobre mí | Pala
+- Tela de araña completa: Home → Sobre mí → Pala → email
