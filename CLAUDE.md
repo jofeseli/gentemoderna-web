@@ -159,3 +159,41 @@ Usa `data-letters-form` + `data-systeme-endpoint` para integrarse con Systeme.io
 ### Jim Carrey quote
 Texto exacto usado: "Ojalá todos pudieran ser ricos y famosos para darse cuenta de que eso no es la respuesta."
 Estilo: clase `.quote` (borde izquierdo accent, sin cursiva)
+
+## Sesión 2026-06-16
+
+### Cambios realizados
+
+- `sobre-mi.html` reescrito completamente:
+  - Eyebrow: "Sobre mí raro." / H1: "Banana Men." / lede: "No hables demasiado de ti."
+  - Estructura: estoico + diálogo con el padre → historia Sri Lanka → foto Banana Men → 3 clases sociales → formulario
+  - Nav y footer actualizados: "Sobre mí" → "Banana" en todas las páginas
+  - Foto: `assets/banana-men.jpg` (convertida de Banana_men.tif subida por el usuario)
+  - Link final: "ya, pero cuéntame otra historia o algo, ¿no? →" → pala.html
+- `pala.html` reescrito con copy nuevo:
+  - H1: "Otro hombre." / lede: "Esta vez con una pala en lugar de una banana." + segunda lede sobre por qué existen las cartas
+  - Copy más aireado: ¡Noooo!, "empanzao", "Yo cavo. Tú aceleras. Y vas viendo."
+- `styles.css`: `.prose-img` limitada a `max-width: 420px` en desktop
+- Nav global: "Sobre mí" → "Banana" (href sigue apuntando a sobre-mi.html)
+
+### Estado del proyecto al cierre de sesión
+
+**La web está prácticamente terminada.** Copy pulido en todas las páginas, tela de araña funcionando, formulario operativo con Systeme.io, deploy automático en Vercel.
+
+## Pendientes para próxima sesión
+
+### Operativo (prioritario)
+1. **Email de bienvenida en Systeme.io** — Crear automatización: trigger tag `Suscriptor-home` (ID: 1157284) → enviar email. Asunto sugerido: "Haz recuento de lo que ya tienes." Contiene la pregunta que se menciona en la web.
+2. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
+
+### SEO / Técnico
+3. **Open Graph tags** — Añadir `og:title`, `og:description`, `og:image` en todas las páginas para que los enlaces se vean bien al compartir en redes.
+4. **sitemap.xml y robots.txt** — Para indexación básica.
+
+### DNS / Dominio (último paso)
+5. **Migración DNS** — Solo cuando el email de bienvenida esté funcionando y probado con suscriptores reales. `gentemoderna.com` apunta actualmente al sistema anterior. **No tocar registros MX.**
+
+### Notas permanentes de copy
+- NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
+- NUNCA quitar ninguno de los 4 pilares del eyebrow: Claridad, dinero, decisiones, libertad
+- Estilo: frases cortas, párrafos individuales, humor seco puntual, sin disculparse por existir
