@@ -459,7 +459,7 @@ ul.clean li {
 .prose-img {
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: 420px;
   height: auto;
   margin-top: 2.4em;
   border-radius: 2px;
