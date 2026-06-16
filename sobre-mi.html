@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sobre mí - Gente Moderna</title>
     <meta name="description" content="Quién está detrás de Gente Moderna y por qué escribe estas cartas.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/logo-negro.png">
+    <meta name="theme-color" content="#0e5c47" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#c9b56a" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="styles.css">
+    <script>
+      (function(){
+        var t = localStorage.getItem("gm-theme");
+        var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = t || (d ? "dark" : "light");
+      })();
+    </script>
   </head>
   <body>
     <header class="site-header">
