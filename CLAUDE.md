@@ -180,18 +180,31 @@ Estilo: clase `.quote` (borde izquierdo accent, sin cursiva)
 
 **La web está prácticamente terminada.** Copy pulido en todas las páginas, tela de araña funcionando, formulario operativo con Systeme.io, deploy automático en Vercel.
 
-## Pendientes para próxima sesión
+## Sesión 2026-06-17
 
-### Operativo (prioritario)
-1. **Email de bienvenida en Systeme.io** — Crear automatización: trigger tag `Suscriptor-home` (ID: 1157284) → enviar email. Asunto sugerido: "Haz recuento de lo que ya tienes." Contiene la pregunta que se menciona en la web.
-2. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
+### Cambios realizados
+
+- `legal.html` reescrito: más claro y directo, 4 secciones (Cookies · Qué dato tengo de ti · Qué puedes pedirme · Quién está detrás). Sin jerga RGPD innecesaria, mismo cumplimiento legal.
+- `sobre-mi.html`: copy final pulido — eyebrow "Sobre mí raro.", h1 "Banana Men.", múltiples ajustes de detalle (clases sociales, "eres libre", "Ojo con esto." como h2, pregunta final corregida)
+- `pala.html`: h1 → "Otro hombre." / lede → "Esta vez con una pala en lugar de una banana."
+- **DNS migrado en Raíola (cPanel):**
+  - Registro A `gentemoderna.com` → `76.76.21.21` (Vercel)
+  - CNAME `www.gentemoderna.com` → `cname.vercel-dns.com`
+  - Registros MX y email intactos
+- Email de bienvenida en Systeme.io: ya estaba configurado — tag `Suscriptor-home` dispara el envío automáticamente. **La web está operativa.**
+
+### Estado al cierre
+
+**La web está lanzada.** DNS apuntando a Vercel, propagación en curso (15-30 min). Cuando `gentemoderna.com` cargue la web nueva, el proyecto está completo. Vercel emite el SSL automáticamente al detectar el DNS.
+
+## Pendientes (no urgentes)
 
 ### SEO / Técnico
-3. **Open Graph tags** — Añadir `og:title`, `og:description`, `og:image` en todas las páginas para que los enlaces se vean bien al compartir en redes.
-4. **sitemap.xml y robots.txt** — Para indexación básica.
+1. **Open Graph tags** — `og:title`, `og:description`, `og:image` en todas las páginas. Para que los enlaces se vean bien al compartir en redes.
+2. **sitemap.xml y robots.txt** — Indexación básica. Media hora de trabajo.
 
-### DNS / Dominio (último paso)
-5. **Migración DNS** — Solo cuando el email de bienvenida esté funcionando y probado con suscriptores reales. `gentemoderna.com` apunta actualmente al sistema anterior. **No tocar registros MX.**
+### Contenido
+3. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
 
 ### Notas permanentes de copy
 - NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
