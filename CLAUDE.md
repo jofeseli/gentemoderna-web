@@ -197,14 +197,25 @@ Estilo: clase `.quote` (borde izquierdo accent, sin cursiva)
 
 **La web está lanzada.** DNS apuntando a Vercel, propagación en curso (15-30 min). Cuando `gentemoderna.com` cargue la web nueva, el proyecto está completo. Vercel emite el SSL automáticamente al detectar el DNS.
 
-## Pendientes (no urgentes)
+## Sesión 2026-06-18
 
-### SEO / Técnico
-1. **Open Graph tags** — `og:title`, `og:description`, `og:image` en todas las páginas. Para que los enlaces se vean bien al compartir en redes.
-2. **sitemap.xml y robots.txt** — Indexación básica. Media hora de trabajo.
+### Cambios realizados
+
+- **DNS resuelto:** el dominio usaba nameservers de Cloudflare (no Raíola). Los cambios en Raíola no tenían efecto. Solucionado con "Auto configure" en Vercel → Cloudflare actualizó los registros automáticamente.
+- **`gentemoderna.com` movido al proyecto correcto:** estaba asociado al proyecto "home" en Vercel, no a `gentemoderna-web`. Corregido desde Settings → Domains.
+- **Open Graph tags** añadidas en las 4 páginas: `index.html`, `sobre-mi.html`, `pala.html`, `legal.html` — `og:title`, `og:description`, `og:url`, `og:image` + equivalentes Twitter Card.
+- **`sitemap.xml`** creado con las 4 URLs del sitio.
+- **`robots.txt`** creado apuntando al sitemap.
+- **`legal.html`** reescrito: 4 secciones claras, sin jerga RGPD innecesaria.
+
+### Estado al cierre
+
+**El proyecto está terminado.** Web live en `gentemoderna.com`, formulario operativo, email de bienvenida automático, DNS correcto, SEO básico completo.
+
+## Pendientes
 
 ### Contenido
-3. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
+1. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
 
 ### Notas permanentes de copy
 - NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
