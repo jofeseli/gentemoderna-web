@@ -212,10 +212,24 @@ Estilo: clase `.quote` (borde izquierdo accent, sin cursiva)
 
 **El proyecto está terminado.** Web live en `gentemoderna.com`, formulario operativo, email de bienvenida automático, DNS correcto, SEO básico completo.
 
+## Sesión 2026-06-30
+
+### Cambios realizados
+
+- **Honeypot antispam** — Campo oculto `name="website"` añadido a todos los formularios (index, sobre-mi, pala, cartas). La función `api/subscribe.js` rechaza silenciosamente cualquier envío que lo rellene. Soluciona la entrada masiva de bots detectada.
+- **Systeme.io DNS** — Descartado. Los CNAME que pide Systeme.io son para usar `www.gentemoderna.com` como landing page en su plataforma, lo cual rompería la web. Los emails funcionan correctamente sin esa configuración. No hay que tocar nada.
+
+### Estado al cierre
+
+Web operativa en `gentemoderna.com`. Formulario con protección antispam activa. Emails funcionando.
+
 ## Pendientes
 
 ### Contenido
 1. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
+
+### Antispam (vigilancia)
+2. **Monitorizar bots** — Si el honeypot no es suficiente, añadir segunda capa: validación por tiempo (campo timestamp rellenado por JS) o rate limiting en la Vercel Function.
 
 ### Notas permanentes de copy
 - NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
