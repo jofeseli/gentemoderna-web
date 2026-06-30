@@ -3,7 +3,12 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { email } = req.body || {};
+  const { email, website } = req.body || {};
+
+  // Honeypot: los bots rellenan este campo, los humanos no lo ven
+  if (website) {
+    return res.status(200).json({ ok: true });
+  }
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: "Email inválido" });
