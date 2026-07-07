@@ -4,14 +4,35 @@ module.exports = async function handler(req, res) {
   }
 
   const { email, website, ts } = req.body || {};
+  const cfToken = req.body?.['cf-turnstile-response'];
 
-  // 1. Honeypot: los bots rellenan este campo, los humanos no lo ven
+  // 1. Honeypot
   if (website) {
     return res.status(200).json({ ok: true });
   }
 
-  // 2. Token de tiempo: el formulario tarda al menos 3 segundos en rellenarse
-  // Los bots envían instantáneamente; los humanos tardan más
+  // 2. Cloudflare Turnstile — verificación criptográfica anti-bot
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (turnstileSecret) {
+    if (!cfToken) {
+      return res.status(200).json({ ok: true });
+    }
+    try {
+      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secret: turnstileSecret, response: cfToken }),
+      });
+      const verifyData = await verifyRes.json();
+      if (!verifyData.success) {
+        return res.status(200).json({ ok: true });
+      }
+    } catch (e) {
+      console.error('Turnstile verify error:', e.message);
+    }
+  }
+
+  // 3. Token de tiempo (capa adicional)
   if (!ts || (Date.now() - parseInt(ts, 10)) < 3000) {
     return res.status(200).json({ ok: true });
   }
