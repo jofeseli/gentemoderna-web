@@ -50,6 +50,7 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
     try {
       const tsInput = form.querySelector('input[name="ts"]');
       const websiteInput = form.querySelector('input[name="website"]');
+      const turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -57,6 +58,7 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
           email,
           ts: tsInput?.value || "",
           website: websiteInput?.value || "",
+          "cf-turnstile-response": turnstileInput?.value || "",
         }),
       });
 
