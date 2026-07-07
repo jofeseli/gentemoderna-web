@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#0e5c47" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#c9b56a" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script>
       (function(){
         var t = localStorage.getItem("gm-theme");
@@ -38,6 +39,7 @@
         <form class="signup" action="/api/subscribe" method="post" data-letters-form>
           <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;">
           <input type="hidden" name="ts">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADxPsR2mXrzimtHQ" data-theme="auto"></div>
           <div class="form-row">
             <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
             <button class="button" type="submit">Recibir las cartas</button>
