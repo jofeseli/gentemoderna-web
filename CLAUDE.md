@@ -223,13 +223,33 @@ Estilo: clase `.quote` (borde izquierdo accent, sin cursiva)
 
 Web operativa en `gentemoderna.com`. Formulario con protección antispam activa. Emails funcionando.
 
+## Sesión 2026-07-07
+
+### Cambios realizados
+
+- **Timestamp anti-bot** — Campo `<input type="hidden" name="ts">` añadido a todos los formularios. `script.js` lo rellena con `Date.now()` al cargar. `subscribe.js` rechaza envíos con menos de 3 segundos de antigüedad.
+- **Cloudflare Turnstile** — Integración completa anti-bot criptográfica:
+  - Widget invisible (`cf-turnstile`, modo Managed) añadido en los 6 formularios
+  - Site Key: `0x4AAAAAADxPsR2mXrzimtHQ`
+  - Secret Key guardada en Vercel como `TURNSTILE_SECRET_KEY`
+  - `subscribe.js` verifica el token contra la API de Cloudflare antes de procesar cualquier suscripción — rechazo silencioso si falta o es inválido
+  - Script Turnstile añadido al `<head>` de las 4 páginas con formulario
+
+### Por qué funciona
+Los bots atacaban directamente al endpoint `/api/subscribe` sin pasar por el HTML. Turnstile exige un token criptográfico que solo genera Cloudflare para navegadores reales — los bots no pueden fabricarlo.
+
+### Estado al cierre
+
+**Bots bloqueados definitivamente.** Web operativa en `gentemoderna.com`, formulario con protección Turnstile activa.
+
 ## Pendientes
 
 ### Contenido
 1. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
 
-### Antispam (vigilancia)
-2. **Monitorizar bots** — Si el honeypot no es suficiente, añadir segunda capa: validación por tiempo (campo timestamp rellenado por JS) o rate limiting en la Vercel Function.
+### Antispam (mejoras opcionales, no urgentes)
+2. **Rate limiting por IP** — Si en el futuro aparecen bots muy sofisticados (headless Chrome real que pasa Turnstile), añadir rate limiting con Vercel KV o Upstash Redis: máx. 3 intentos por IP por hora.
+3. **Limpiar bots existentes en Systeme.io** — Los contactos bot que ya están en la lista se pueden eliminar manualmente filtrando por emails con patrones sospechosos (números aleatorios, muchos puntos en local part, dominios desconocidos).
 
 ### Notas permanentes de copy
 - NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
