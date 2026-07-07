@@ -3,15 +3,29 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { email, website } = req.body || {};
+  const { email, website, ts } = req.body || {};
 
-  // Honeypot: los bots rellenan este campo, los humanos no lo ven
+  // 1. Honeypot: los bots rellenan este campo, los humanos no lo ven
   if (website) {
     return res.status(200).json({ ok: true });
   }
 
+  // 2. Token de tiempo: el formulario tarda al menos 3 segundos en rellenarse
+  // Los bots envían instantáneamente; los humanos tardan más
+  if (!ts || (Date.now() - parseInt(ts, 10)) < 3000) {
+    return res.status(200).json({ ok: true });
+  }
+
+  // 3. Validación básica de email
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: "Email inválido" });
+  }
+
+  // 4. Filtro de patrón bot: emails con demasiados puntos en la parte local
+  // Ejemplo: ka.ren.abe.r.g.en.d.o.rf@gmail.com
+  const localPart = email.split("@")[0];
+  if ((localPart.match(/\./g) || []).length > 3) {
+    return res.status(200).json({ ok: true });
   }
 
   const apiKey = process.env.SYSTEME_API_KEY || process.env.systemeapykey;
@@ -27,7 +41,7 @@ module.exports = async function handler(req, res) {
   };
 
   try {
-    // 1. Crear el contacto
+    // Crear el contacto
     const createRes = await fetch("https://api.systeme.io/api/contacts", {
       method: "POST",
       headers,
@@ -36,13 +50,11 @@ module.exports = async function handler(req, res) {
 
     const createData = await createRes.json();
 
-    // Si el email ya existe, igualmente añadimos el tag buscando el contacto
     let contactId = createData?.id;
 
     if (!createRes.ok) {
       const detail = JSON.stringify(createData);
       if (detail.includes("ya se ha utilizado") || detail.includes("already")) {
-        // Buscar el contacto existente para obtener su ID
         const searchRes = await fetch(
           `https://api.systeme.io/api/contacts?email=${encodeURIComponent(email)}`,
           { method: "GET", headers }
@@ -55,7 +67,7 @@ module.exports = async function handler(req, res) {
       }
     }
 
-    // 2. Añadir el tag "Suscriptor-home" si tenemos el ID
+    // Añadir el tag "Suscriptor-home"
     if (contactId) {
       await fetch(`https://api.systeme.io/api/contacts/${contactId}/tags`, {
         method: "POST",
