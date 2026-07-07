@@ -1,3 +1,8 @@
+// ─── Antispam: rellenar timestamp en todos los formularios ──
+document.querySelectorAll('[name="ts"]').forEach(function(el) {
+  el.value = Date.now();
+});
+
 // ─── Dark mode ───────────────────────────────────────────
 const root = document.documentElement;
 const button = document.querySelector("[data-theme-toggle]");
@@ -43,10 +48,16 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
     submitBtn.textContent = "Enviando…";
 
     try {
+      const tsInput = form.querySelector('input[name="ts"]');
+      const websiteInput = form.querySelector('input[name="website"]');
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+          email,
+          ts: tsInput?.value || "",
+          website: websiteInput?.value || "",
+        }),
       });
 
       if (res.ok) {
