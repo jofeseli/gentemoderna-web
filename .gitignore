@@ -1,0 +1,28 @@
+# --- Credenciales: NUNCA subir. El repo es PUBLICO ---
+clavesCF.md
+claves*.md
+*.key
+*.pem
+.env
+.env.*
+
+# --- Notas de trabajo, no forman parte del sitio ---
+limpieza-contactos.md
+
+# --- Originales pesados (no los usa ninguna pagina) ---
+assets/*.tif
+assets/*.TIF
+assets/*.psd
+assets/banana-men-0.jpg
+assets/banana-men-1.jpg
+assets/banana-men-2.jpg
+assets/banana-men-3.jpg
+assets/banana-men-4.jpg
+assets/banana-men-5.jpg
+assets/banana-men-6.jpg
+assets/banana-men-7.jpg
+
+# --- Sistema ---
+.DS_Store
+node_modules/
+.vercel
