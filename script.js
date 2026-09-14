@@ -69,7 +69,16 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
       } else {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
-        showFormError(form, "Algo ha fallado. Inténtalo de nuevo.");
+        let msg = "Algo ha fallado. Inténtalo de nuevo.";
+        try {
+          const data = await res.json();
+          if (data && data.error) msg = data.error;
+        } catch {}
+        showFormError(form, msg);
+        // Turnstile es de un solo uso: hay que resetearlo tras un fallo
+        if (window.turnstile) {
+          try { window.turnstile.reset(); } catch {}
+        }
       }
     } catch {
       submitBtn.disabled = false;
