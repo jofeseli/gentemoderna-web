@@ -12,23 +12,29 @@ module.exports = async function handler(req, res) {
   }
 
   // 2. Cloudflare Turnstile — verificación criptográfica anti-bot
+  // IMPORTANTE: nunca devolver 200 falso. Si la verificación no se puede
+  // completar, el usuario debe enterarse — mejor un error visible que
+  // perder una suscripción legítima en silencio.
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
   if (turnstileSecret) {
     if (!cfToken) {
-      return res.status(200).json({ ok: true });
+      console.error("Turnstile: token ausente");
+      return res.status(400).json({ error: "Verificación de seguridad no completada. Recarga la página e inténtalo de nuevo." });
     }
     try {
-      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ secret: turnstileSecret, response: cfToken }),
       });
       const verifyData = await verifyRes.json();
       if (!verifyData.success) {
-        return res.status(200).json({ ok: true });
+        console.error("Turnstile rechazado:", JSON.stringify(verifyData["error-codes"] || []));
+        return res.status(400).json({ error: "Verificación de seguridad fallida. Recarga la página e inténtalo de nuevo." });
       }
     } catch (e) {
-      console.error('Turnstile verify error:', e.message);
+      // Cloudflare caído: no bloqueamos al usuario, seguimos con las otras capas
+      console.error("Turnstile no disponible:", e.message);
     }
   }
 
