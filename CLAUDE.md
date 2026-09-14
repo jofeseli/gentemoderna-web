@@ -242,14 +242,93 @@ Los bots atacaban directamente al endpoint `/api/subscribe` sin pasar por el HTM
 
 **Bots bloqueados definitivamente.** Web operativa en `gentemoderna.com`, formulario con protección Turnstile activa.
 
+## Sesión 2026-09-14 — Apagón de dos meses en las suscripciones
+
+### Qué había pasado
+
+Desde el **7 de julio hasta el 14 de septiembre no entró ni una sola suscripción**. La causa: la **clave de API de Systeme.io caducó**. El log de Vercel lo decía literal: `Systeme.io error: "API Key has expired."` → 500 → el visitante veía "Algo ha fallado".
+
+### Resuelto
+
+- **Clave nueva de Systeme.io** generada (sin caducidad, decisión deliberada: con caducidad y sin alertas, la avería está programada). Actualizada en la variable `systemeapykey` de Vercel + redeploy.
+- **Verificado de punta a punta**: alta real desde el formulario → contacto creado en Systeme.io a las 10:52:11 con tag `Suscriptor-home` → email de bienvenida recibido.
+
+### La avalancha de bots: era list-bombing, no spam corriente
+
+Análisis de los 100 contactos por ventana temporal:
+
+| Periodo | Altas | Patrón |
+|---|---|---|
+| abr 2025 – 22 jun 2026 | 23 | Orgánico, 1–2/día, dominios españoles (`.es`, `ugr.es`) |
+| **29 jun – 6 jul 2026** | **77** | **Ataque**, pico de 22 en un día, dominios US |
+| 7 jul – 13 sep 2026 | 0 | Turnstile activo + clave caducada |
+
+**77 de 100 contactos eran del ataque.** Y no eran emails falsos: había direcciones reales de personas reales (`susan.casola@ralphlauren.com`, `rtomlin@cityofsacramento.org`, `dstott@ohio.edu`, `vineet.thuvara@fluke.com`). Fue **list-bombing**: un bot metió correos robados en el formulario. Esa gente recibió un email de bienvenida en español que no pidió — riesgo de quejas de spam contra el dominio.
+
+Lista completa y revisable en `limpieza-contactos.md`. Único posible falso positivo dentro de la ventana: `roys18martinez@hotmail.com`.
+
+No se pudo etiquetar para borrado en bloque: **el plan gratuito de Systeme.io solo permite 1 etiqueta**. Hay que borrarlos filtrando por fecha en la UI.
+
+### Turnstile: diagnóstico corregido
+
+Durante la sesión se concluyó por error que el widget fallaba por un hostname mal configurado (`gentemoderna.com` sin `www`). **Era falso.** El test decisivo, con las claves oficiales de Cloudflare en la misma página:
+
+| Clave | Comportamiento | Resultado |
+|---|---|---|
+| `1x...AA` | Pasa sin desafío real | Token OK |
+| `2x...AB` | Bloquea siempre | Error 600010 |
+| `3x...FF` | Fuerza desafío interactivo | Silencio |
+| La real | Desafío real | Silencio |
+
+`3x...FF` es oficial y no tiene restricción de dominio. Que también diera silencio demuestra que **el navegador de pruebas no puede renderizar desafíos reales de Turnstile**. El silencio era del entorno, no de la configuración. Turnstile funciona bien para visitantes reales.
+
+**Lección: no diagnosticar desde el navegador sandbox sin un control.** Se añadió `www.gentemoderna.com` al widget igualmente (no sobra).
+
+Corolario: el POST directo sin token que devolvía `{ok:true}` sin crear contacto **no era un fallo** — es la protección anti-bot funcionando contra un script. Se interpretó como avería.
+
+### Fallo del éxito falso — CORREGIDO Y DESPLEGADO
+
+Si Turnstile no generaba token por causas legítimas (adblocker, mala conexión), `subscribe.js` devolvía `{ok:true}` y el visitante veía *"Hecho. Ya recibirás las próximas cartas."* **sin haberse suscrito**. Éxito falso silencioso.
+
+Corregido en `api/subscribe.js` + `script.js` (commits `a74c132` y `f15eb64`, desplegado en `dpl_7pzqBozg`):
+- Token ausente o inválido → **400 con mensaje visible**, nunca `ok:true`
+- Si Cloudflare está caído (excepción de red) → no bloquea al usuario, sigue con las otras capas
+- El frontend muestra el error real del servidor y resetea el widget (los tokens Turnstile son de un solo uso)
+- El honeypot **sigue rechazando en silencio** con `{ok:true}`: a un bot detectado no se le informa
+
+Verificado en producción:
+
+| Prueba | Resultado |
+|---|---|
+| POST sin token Turnstile | 400 + mensaje visible |
+| POST con honeypot relleno | 200 `{ok:true}` silencioso |
+| Las 5 páginas | 200 |
+
+### Otros arreglos
+
+- **`.gitignore` creado.** No existía y el repo es **público**. `clavesCF.md` (con la clave secreta de Turnstile) estaba sin proteger — verificado que NO llegó a subirse (404 en GitHub), pero un `git add .` la habría expuesto.
+- **Chequeo semanal automático** configurado: revisa cada lunes los logs de Vercel en busca de 5xx en `/api/subscribe` y avisa. Es lo que habría detectado este apagón en una semana en vez de en dos meses.
+
 ## Pendientes
+
+### Acceso (ojo al empezar la próxima sesión)
+0. **No hay token de GitHub válido.** El clásico caducó (401) y el fine-grained que se usó el 14/09 se revocó al terminar. Para volver a tocar el repo hay que generar uno nuevo: GitHub → Settings → Developer settings → Personal access tokens → **Fine-grained** → *Only select repositories* = `gentemoderna-web`, permiso **Contents: Read and write**, caducidad 30 días. Tarda ~1 min en propagar (un 404 inicial es normal, reintentar). Revocarlo al acabar.
 
 ### Contenido
 1. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
 
-### Antispam (mejoras opcionales, no urgentes)
-2. **Rate limiting por IP** — Si en el futuro aparecen bots muy sofisticados (headless Chrome real que pasa Turnstile), añadir rate limiting con Vercel KV o Upstash Redis: máx. 3 intentos por IP por hora.
-3. **Limpiar bots existentes en Systeme.io** — Los contactos bot que ya están en la lista se pueden eliminar manualmente filtrando por emails con patrones sospechosos (números aleatorios, muchos puntos en local part, dominios desconocidos).
+### Limpieza
+2. **Borrar los 77 contactos del ataque** — Filtrar en Systeme.io por fecha de registro 29/06/2026–06/07/2026 y eliminar en bloque. Revisar antes `roys18martinez@hotmail.com` (posible falso positivo). Lista completa en `limpieza-contactos.md`.
+3. **Basura en `assets/`** — 604 MB en `Banana_men.tif` + 8 copias sueltas `banana-men-0..7.jpg` que no usa ninguna página. Ya están en `.gitignore`, pero conviene borrarlas del disco.
+
+### Antispam (opcional, no urgente)
+4. **Rate limiting por IP** — Si vuelven bots que pasan Turnstile, añadir rate limiting con Vercel KV o Upstash Redis: máx. 3 intentos por IP por hora.
+
+### Notas operativas
+- **La web sirve SOLO en `www.gentemoderna.com`** — el apex redirige con 307.
+- **Cambiar una variable de entorno en Vercel no surte efecto hasta redesplegar.**
+- **Systeme.io plan gratuito: máximo 1 etiqueta.** No se pueden crear etiquetas nuevas vía API.
+- **Nunca diagnosticar Turnstile desde el navegador sandbox** sin comparar con las claves de prueba de Cloudflare (`1x...AA` pasa, `3x...FF` fuerza desafío real).
 
 ### Notas permanentes de copy
 - NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
