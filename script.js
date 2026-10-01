@@ -59,6 +59,9 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
           ts: tsInput?.value || "",
           website: websiteInput?.value || "",
           "cf-turnstile-response": turnstileInput?.value || "",
+          // Origen del alta: el ?ref= del enlace (sin guardar nada en el navegador)
+          ref: new URLSearchParams(location.search).get("ref") || "",
+          page: location.pathname || "",
         }),
       });
 
