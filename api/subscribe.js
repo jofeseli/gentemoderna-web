@@ -4,6 +4,12 @@ module.exports = async function handler(req, res) {
   }
 
   const { email, website, ts } = req.body || {};
+
+  // Origen del alta (?ref= del enlace + página del formulario). Se limpia y se
+  // registra SIN el email, solo para saber qué canal trae suscriptores.
+  const clean = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9._\/-]/g, "").slice(0, 60);
+  const ref = clean(req.body?.ref) || "directo";
+  const page = clean(req.body?.page) || "desconocida";
   const cfToken = req.body?.['cf-turnstile-response'];
 
   // 1. Honeypot
@@ -103,6 +109,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    console.log(`ALTA ref=${ref} page=${page}`);
     return res.status(200).json({ ok: true });
 
   } catch (err) {
