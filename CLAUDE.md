@@ -315,7 +315,9 @@ Verificado en producción:
 - Script `<script defer src="/_vercel/insights/script.js">` en el `<head>` de las 6 páginas; cola `window.va` definida al inicio de `script.js`. Verificado en producción: script 200 y `POST /_vercel/insights/view` 200.
 - **Cada alta cuenta como visita virtual** a `/alta/<página>/<origen>` (ej. `/alta/pala/instagram`, `/alta/home/directo`), lanzada en `script.js` solo cuando `/api/subscribe` responde ok. En el panel: filtrar páginas por `/alta` → altas por página y canal. Conversión = visitas a `/alta/*` ÷ visitantes.
 - La cifra fiable de altas sigue siendo Systeme.io (tag `Suscriptor-home`); Analytics puede no contar a quien bloquea scripts.
-- Pendiente: guardar cada semana visitas, altas y conversión (Analytics solo guarda 30 días).
+- **`api/stats.js`**: `GET /api/stats?since=AAAA-MM-DD&until=AAAA-MM-DD` cuenta altas en Systeme.io por rango (solo números, nunca emails). Sin parámetros = última semana completa.
+- **Panel semanal** (artifact Dashboard "Tráfico y altas — Gente Moderna", https://claude.ai/artifact/EYGcAe9PwD6ZvzdXPk6qjb) + tarea programada los lunes 9:10 (Madrid) que añade la semana anterior. Altas rellenadas desde el 31/08/2026.
+- Ojo: la API de consulta de Web Analytics de Vercel devuelve "Web Analytics not found" (posible límite del plan Hobby). Si sigue así, visitas solo en el panel de Vercel.
 - Acceso a GitHub ahora vía la app de Claude en GitHub (ya no hace falta token personal).
 
 ## Pendientes
