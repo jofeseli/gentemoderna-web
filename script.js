@@ -1,3 +1,6 @@
+// ─── Analítica (Vercel Web Analytics, sin cookies) ───────
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
 // ─── Antispam: rellenar timestamp en todos los formularios ──
 document.querySelectorAll('[name="ts"]').forEach(function(el) {
   el.value = Date.now();
@@ -66,6 +69,10 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
       });
 
       if (res.ok) {
+        // Cada alta cuenta como una visita a /alta/<página>/<origen> en Analytics
+        const pageName = (location.pathname.replace(/^\/|\.html$/g, "") || "home").replace(/[^a-z0-9-]/gi, "");
+        const refName = (new URLSearchParams(location.search).get("ref") || "directo").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40) || "directo";
+        window.va("pageview", { route: "/alta", path: "/alta/" + (pageName || "home") + "/" + refName });
         form.innerHTML = `<p style="padding: 12px 0; font-family: var(--sans); font-size: 0.9rem;">
           Hecho. Ya recibirás las próximas cartas.
         </p>`;
