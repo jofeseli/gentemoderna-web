@@ -309,6 +309,15 @@ Verificado en producción:
 - **`.gitignore` creado.** No existía y el repo es **público**. `clavesCF.md` (con la clave secreta de Turnstile) estaba sin proteger — verificado que NO llegó a subirse (404 en GitHub), pero un `git add .` la habría expuesto.
 - **Chequeo semanal automático** configurado: revisa cada lunes los logs de Vercel en busca de 5xx en `/api/subscribe` y avisa. Es lo que habría detectado este apagón en una semana en vez de en dos meses.
 
+## Sesión 2026-10-14 — Medición de tráfico y altas
+
+- **Vercel Web Analytics activado** (plan Hobby: 50.000 eventos/mes, 30 días de historial, sin eventos personalizados).
+- Script `<script defer src="/_vercel/insights/script.js">` en el `<head>` de las 6 páginas; cola `window.va` definida al inicio de `script.js`. Verificado en producción: script 200 y `POST /_vercel/insights/view` 200.
+- **Cada alta cuenta como visita virtual** a `/alta/<página>/<origen>` (ej. `/alta/pala/instagram`, `/alta/home/directo`), lanzada en `script.js` solo cuando `/api/subscribe` responde ok. En el panel: filtrar páginas por `/alta` → altas por página y canal. Conversión = visitas a `/alta/*` ÷ visitantes.
+- La cifra fiable de altas sigue siendo Systeme.io (tag `Suscriptor-home`); Analytics puede no contar a quien bloquea scripts.
+- Pendiente: guardar cada semana visitas, altas y conversión (Analytics solo guarda 30 días).
+- Acceso a GitHub ahora vía la app de Claude en GitHub (ya no hace falta token personal).
+
 ## Pendientes
 
 ### Acceso (ojo al empezar la próxima sesión)
