@@ -58,6 +58,8 @@
                  color: var(--muted); display: flex; justify-content: space-between;
                  align-items: center; gap: 12px; z-index: 5; }
       #resultado { display: none; }
+      .q.pendiente { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-light); }
+      #aviso { color: var(--accent); font-weight: 600; }
       .score { font-size: 4rem; line-height: 1; font-weight: 700; margin: 0 0 .2rem; }
       .score small { font-size: 1rem; font-weight: 400; color: var(--muted); font-family: var(--sans); }
       .nota-privacidad { font-family: var(--sans); font-size: .82rem; color: var(--muted);
@@ -86,7 +88,7 @@
 
       <div class="quizbar">
         <span id="progreso">0 de 11 contestadas</span>
-        <button class="button" id="ver" type="button" disabled>Ver mi resultado</button>
+        <button class="button" id="ver" type="button">Ver mi resultado</button>
       </div>
 
       <section id="resultado" aria-live="polite">
@@ -162,6 +164,7 @@
             b.setAttribute("aria-pressed", "false");
             b.addEventListener("click", function () {
               respuestas[i] = (j === 0);
+              div.classList.remove("pendiente");
               Array.prototype.forEach.call(opts.children, function (o, k) {
                 o.setAttribute("aria-pressed", k === j ? "true" : "false");
               });
@@ -179,10 +182,21 @@
         function actualizar() {
           var hechas = respuestas.filter(function (r) { return r !== null; }).length;
           progreso.textContent = hechas + " de " + PREGUNTAS.length + " contestadas";
-          ver.disabled = hechas < PREGUNTAS.length;
         }
 
         ver.addEventListener("click", function () {
+          var faltan = respuestas.filter(function (r) { return r === null; }).length;
+          var tarjetas = quiz.querySelectorAll(".q");
+          Array.prototype.forEach.call(tarjetas, function (t) { t.classList.remove("pendiente"); });
+          if (faltan > 0) {
+            progreso.innerHTML = '<span id="aviso">' + (faltan === 1
+              ? "Te falta una pregunta por contestar."
+              : "Te faltan " + faltan + " preguntas por contestar.") + "</span>";
+            var primera = respuestas.indexOf(null);
+            tarjetas[primera].classList.add("pendiente");
+            tarjetas[primera].scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+          }
           var aciertos = respuestas.filter(Boolean).length;
           document.getElementById("n").textContent = aciertos;
           var v = document.getElementById("veredicto");
