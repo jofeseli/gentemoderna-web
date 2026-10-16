@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>No sabes lo que pagas - Gente Moderna</title>
+    <meta name="description" content="Once preguntas sobre tu dinero. Vale sí o no. Dos minutos.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="No sabes lo que pagas — Gente Moderna">
+    <meta property="og:description" content="Once preguntas sobre tu dinero que no vas a saber contestar. Dos minutos.">
+    <meta property="og:url" content="https://www.gentemoderna.com/test.html">
+    <meta property="og:image" content="https://www.gentemoderna.com/assets/banana-men.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="No sabes lo que pagas — Gente Moderna">
+    <meta name="twitter:description" content="Once preguntas sobre tu dinero que no vas a saber contestar. Dos minutos.">
+    <meta name="twitter:image" content="https://www.gentemoderna.com/assets/banana-men.jpg">
+    <link rel="icon" href="assets/FAVICON_BUENO.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/FAVICON_BUENO.png">
+    <meta name="theme-color" content="#0e5c47" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#c9b56a" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+      // Turnstile se monta a mano cuando la cajetilla se ve (oculta no funciona).
+      window.gmTsListo = false;
+      window.gmMontarTurnstile = function () {
+        var caja = document.getElementById("ts-widget");
+        var seccion = document.getElementById("resultado");
+        if (!window.gmTsListo || !window.turnstile || !caja || !seccion) return;
+        if (seccion.style.display !== "block" || caja.dataset.montado) return;
+        window.turnstile.render(caja, { sitekey: "0x4AAAAAADxPsR2mXrzimtHQ", theme: "auto" });
+        caja.dataset.montado = "1";
+      };
+      window.gmTurnstileCargado = function () { window.gmTsListo = true; window.gmMontarTurnstile(); };
+    </script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=gmTurnstileCargado" async defer></script>
+    <script>
+      (function(){
+        var t = localStorage.getItem("gm-theme");
+        var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = t || (d ? "dark" : "light");
+      })();
+    </script>
+    <style>
+      .q { background: var(--field); border: 1px solid var(--line); border-radius: 10px;
+           padding: 16px 18px; margin-bottom: 12px; }
+      .q p { margin: 0 0 12px; }
+      .q .num { font-family: var(--sans); font-size: .72rem; letter-spacing: .1em;
+                color: var(--accent); font-weight: 700; display: block; margin-bottom: 6px; }
+      .opts { display: flex; gap: 8px; }
+      .opts button { font-family: var(--sans); font-size: .85rem; font-weight: 600;
+                     padding: .45rem 1.1rem; border-radius: 999px; border: 1px solid var(--line);
+                     background: var(--soft); color: var(--text); cursor: pointer; }
+      .opts button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink);
+                     border-color: var(--accent); }
+      .quizbar { position: sticky; bottom: 0; background: var(--bg); padding: 14px 0;
+                 border-top: 1px solid var(--line); font-family: var(--sans); font-size: .85rem;
+                 color: var(--muted); display: flex; justify-content: space-between;
+                 align-items: center; gap: 12px; z-index: 5; }
+      #resultado { display: none; }
+      .q.pendiente { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-light); }
+      #aviso { color: var(--accent); font-weight: 600; }
+      .score { font-size: 4rem; line-height: 1; font-weight: 700; margin: 0 0 .2rem; }
+      .score small { font-size: 1rem; font-weight: 400; color: var(--muted); font-family: var(--sans); }
+      .nota-privacidad { font-family: var(--sans); font-size: .82rem; color: var(--muted);
+                 border-left: 2px solid var(--accent); padding-left: 12px; margin: 2rem 0 0; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <span class="brand" aria-label="Gente Moderna">
+        <img class="brand-logo light" src="assets/logo-negro.png" alt="Gente Moderna">
+        <img class="brand-logo dark" src="assets/logo-blanco.png" alt="">
+      </span>
+      <nav class="nav" aria-label="Principal">
+        <button class="theme-toggle" type="button" data-theme-toggle>Apagar la luz</button>
+      </nav>
+    </header>
+
+    <main>
+      <h1>No sabes lo que pagas</h1>
+      <p>Once preguntas sobre tu dinero. Vale sí o no.</p>
+      <p><strong>Sí</strong> es que sabes la cifra exacta ahora mismo, sin mirar nada. «Más o menos» es un no. Dos minutos.</p>
+
+      <div id="quiz"></div>
+
+      <div class="quizbar">
+        <span id="progreso">0 de 11 contestadas</span>
+        <button class="button" id="ver" type="button">Ver mi resultado</button>
+      </div>
+
+      <section id="resultado" aria-live="polite">
+        <p class="score"><span id="n">0</span> <small>de 11</small></p>
+        <p id="veredicto"></p>
+
+        <form class="signup" action="/api/subscribe" method="post" data-letters-form
+              data-ok-text="Hecho. Te lo mando yo a mano, así que llega en unas horas, no al segundo.">
+          <p>Qué significa ese número, la pregunta número doce y los tres primeros pasos te los mando al correo.</p>
+          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;opacity:0;height:0;width:0;pointer-events:none;">
+          <input type="hidden" name="ts">
+          <input type="hidden" name="aciertos" value="">
+          <div id="ts-widget"></div>
+          <div class="form-row">
+            <input type="email" name="email" aria-label="Email" placeholder="Tu email" autocomplete="email" required>
+            <button class="button" type="submit">Mándamelo</button>
+          </div>
+          <div class="form-row">
+            <input type="email" name="invitador" aria-label="Email de quien te ha invitado" placeholder="¿Quién te ha invitado? Su email" autocomplete="off">
+          </div>
+          <p class="micro">Si has llegado aquí porque alguien te lo ha pasado, pon su email. Lo recibís los dos.</p>
+          <div class="consent">
+            <input type="checkbox" id="privacy-test" name="privacy" value="accepted" required>
+            <label for="privacy-test">Acepto la <a href="legal.html">política de privacidad</a>.</label>
+          </div>
+        </form>
+
+        <p class="nota-privacidad">Tus respuestas no se guardan en ningún sitio. Se quedan en este navegador y desaparecen al cerrar la página. Lo único que recibo es tu email.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Gente Moderna</span>
+      <nav aria-label="Footer">
+        <a href="legal.html">Legal</a>
+      </nav>
+    </footer>
+
+    <script>
+      (function () {
+        var PREGUNTAS = [
+          "¿Cuánto pagas al año por el seguro del coche? Con los céntimos.",
+          "¿Qué día te lo cobran?",
+          "¿Cuántas suscripciones tienes activas ahora mismo? Nombre por nombre.",
+          "¿Cuánto suman al mes entre todas?",
+          "¿Cuándo usaste por última vez la que menos usas?",
+          "¿Cuánto te cobra tu banco al año solo por tener la cuenta abierta?",
+          "¿Cuánto entró en tu cuenta el mes pasado?",
+          "¿Cuánto salió?",
+          "¿Cuál fue tu mayor gasto del mes pasado, sin mirar el móvil?",
+          "¿Cuánto pagas de luz en un mes normal?",
+          "Si mañana se para todo, ¿cuántos meses aguantas?"
+        ];
+        var respuestas = new Array(PREGUNTAS.length).fill(null);
+        var quiz = document.getElementById("quiz");
+
+        PREGUNTAS.forEach(function (texto, i) {
+          var div = document.createElement("div");
+          div.className = "q";
+          var num = document.createElement("span");
+          num.className = "num";
+          num.textContent = (i + 1) + " de " + PREGUNTAS.length;
+          var p = document.createElement("p");
+          p.textContent = texto;
+          var opts = document.createElement("div");
+          opts.className = "opts";
+          ["Lo sé", "Ni idea"].forEach(function (etiqueta, j) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.textContent = etiqueta;
+            b.setAttribute("aria-pressed", "false");
+            b.addEventListener("click", function () {
+              respuestas[i] = (j === 0);
+              div.classList.remove("pendiente");
+              Array.prototype.forEach.call(opts.children, function (o, k) {
+                o.setAttribute("aria-pressed", k === j ? "true" : "false");
+              });
+              actualizar();
+            });
+            opts.appendChild(b);
+          });
+          div.appendChild(num); div.appendChild(p); div.appendChild(opts);
+          quiz.appendChild(div);
+        });
+
+        var progreso = document.getElementById("progreso");
+        var ver = document.getElementById("ver");
+
+        function actualizar() {
+          var hechas = respuestas.filter(function (r) { return r !== null; }).length;
+          progreso.textContent = hechas + " de " + PREGUNTAS.length + " contestadas";
+        }
+
+        ver.addEventListener("click", function () {
+          var faltan = respuestas.filter(function (r) { return r === null; }).length;
+          var tarjetas = quiz.querySelectorAll(".q");
+          Array.prototype.forEach.call(tarjetas, function (t) { t.classList.remove("pendiente"); });
+          if (faltan > 0) {
+            progreso.innerHTML = '<span id="aviso">' + (faltan === 1
+              ? "Te falta una pregunta por contestar."
+              : "Te faltan " + faltan + " preguntas por contestar.") + "</span>";
+            var primera = respuestas.indexOf(null);
+            tarjetas[primera].classList.add("pendiente");
+            tarjetas[primera].scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+          }
+          var aciertos = respuestas.filter(Boolean).length;
+          document.getElementById("n").textContent = aciertos;
+          var v = document.getElementById("veredicto");
+          if (aciertos <= 3) {
+            v.textContent = "Pocas. Y no eres el único: aquí está casi todo el mundo que hace esto por primera vez.";
+          } else if (aciertos <= 7) {
+            v.textContent = "Controlas lo grande. Lo pequeño es lo que se te escapa, y lo pequeño repetido doce veces al año deja de ser pequeño.";
+          } else {
+            v.textContent = "Pocos llegan hasta aquí. Si estás en este grupo, tu problema ya no es el orden.";
+          }
+          var campo = document.querySelector('input[name="aciertos"]');
+          if (campo) campo.value = String(aciertos);
+          var seccion = document.getElementById("resultado");
+          seccion.style.display = "block";
+          window.gmMontarTurnstile();
+          seccion.scrollIntoView({ behavior: "smooth" });
+        });
+      }());
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
