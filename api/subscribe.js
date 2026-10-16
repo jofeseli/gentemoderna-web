@@ -94,6 +94,12 @@ module.exports = async function handler(req, res) {
         );
         const searchData = await searchRes.json();
         contactId = searchData?.items?.[0]?.id;
+      } else if (detail.includes("no es v") || detail.includes("not valid") || detail.includes("invalid")) {
+        // Systeme.io comprueba que el buzón exista de verdad (sobre todo en gmail).
+        // Aquí llega quien se equivoca al teclear: hay que decírselo, no soltarle
+        // un error genérico que le haga reintentar lo mismo y marcharse.
+        console.error("Systeme.io rechaza el email:", detail);
+        return res.status(400).json({ error: "Ese correo no existe. ¿Lo has escrito bien?" });
       } else {
         console.error("Systeme.io error:", detail);
         return res.status(500).json({ error: "Error al suscribir", detail: createData });
