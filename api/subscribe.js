@@ -10,6 +10,10 @@ module.exports = async function handler(req, res) {
   const clean = (v) => String(v || "").toLowerCase().replace(/[^a-z0-9._\/-]/g, "").slice(0, 60);
   const ref = clean(req.body?.ref) || "directo";
   const page = clean(req.body?.page) || "desconocida";
+  // Test "No sabes lo que pagas": quién le invitó y cuántas supo contestar.
+  // El email del invitador NO se registra en los logs: va solo al webhook.
+  const invitador = String(req.body?.invitador || "").trim().slice(0, 120);
+  const aciertos = String(req.body?.aciertos || "").replace(/[^0-9]/g, "").slice(0, 2);
   const cfToken = req.body?.['cf-turnstile-response'];
 
   // 1. Honeypot
@@ -115,7 +119,24 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    console.log(`ALTA ref=${ref} page=${page}`);
+    console.log(`ALTA ref=${ref} page=${page} aciertos=${aciertos || "-"} invitado=${invitador ? "si" : "no"}`);
+
+    // Entrega manual del regalo: mandamos los datos a Make, que los apunta en
+    // la hoja. Si no hay webhook configurado, esto no hace nada y el alta
+    // sigue siendo correcta.
+    const hook = process.env.MAKE_WEBHOOK_URL;
+    if (hook && (invitador || aciertos)) {
+      try {
+        await fetch(hook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, invitador, aciertos, page, fecha: new Date().toISOString() }),
+        });
+      } catch (e) {
+        console.error("Webhook Make no disponible:", e.message);
+      }
+    }
+
     return res.status(200).json({ ok: true });
 
   } catch (err) {
