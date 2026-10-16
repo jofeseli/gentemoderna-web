@@ -20,7 +20,20 @@
     <meta name="theme-color" content="#c9b56a" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="styles.css">
     <script defer src="/_vercel/insights/script.js"></script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+      // Turnstile se monta a mano cuando la cajetilla se ve (oculta no funciona).
+      window.gmTsListo = false;
+      window.gmMontarTurnstile = function () {
+        var caja = document.getElementById("ts-widget");
+        var seccion = document.getElementById("resultado");
+        if (!window.gmTsListo || !window.turnstile || !caja || !seccion) return;
+        if (seccion.style.display !== "block" || caja.dataset.montado) return;
+        window.turnstile.render(caja, { sitekey: "0x4AAAAAADxPsR2mXrzimtHQ", theme: "auto" });
+        caja.dataset.montado = "1";
+      };
+      window.gmTurnstileCargado = function () { window.gmTsListo = true; window.gmMontarTurnstile(); };
+    </script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=gmTurnstileCargado" async defer></script>
     <script>
       (function(){
         var t = localStorage.getItem("gm-theme");
@@ -184,17 +197,7 @@
           if (campo) campo.value = String(aciertos);
           var seccion = document.getElementById("resultado");
           seccion.style.display = "block";
-          // Turnstile no se monta bien dentro de un contenedor oculto:
-          // lo renderizamos aquí, cuando la cajetilla ya se ve.
-          if (window.turnstile && !seccion.dataset.tsReady) {
-            try {
-              window.turnstile.render("#ts-widget", {
-                sitekey: "0x4AAAAAADxPsR2mXrzimtHQ",
-                theme: "auto"
-              });
-              seccion.dataset.tsReady = "1";
-            } catch (e) {}
-          }
+          window.gmMontarTurnstile();
           seccion.scrollIntoView({ behavior: "smooth" });
         });
       }());
