@@ -65,6 +65,9 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
           // Origen del alta: el ?ref= del enlace (sin guardar nada en el navegador)
           ref: new URLSearchParams(location.search).get("ref") || "",
           page: location.pathname || "",
+          // Test "No sabes lo que pagas": quién le ha invitado y cuántas sabía
+          invitador: form.querySelector('input[name="invitador"]')?.value?.trim() || "",
+          aciertos: form.querySelector('input[name="aciertos"]')?.value || "",
         }),
       });
 
@@ -73,8 +76,9 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
         const pageName = (location.pathname.replace(/^\/|\.html$/g, "") || "home").replace(/[^a-z0-9-]/gi, "");
         const refName = (new URLSearchParams(location.search).get("ref") || "directo").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40) || "directo";
         window.va("pageview", { route: "/alta", path: "/alta/" + (pageName || "home") + "/" + refName });
+        const okText = form.dataset.okText || "Hecho. Ya recibirás las próximas cartas.";
         form.innerHTML = `<p style="padding: 12px 0; font-family: var(--sans); font-size: 0.9rem;">
-          Hecho. Ya recibirás las próximas cartas.
+          ${okText}
         </p>`;
       } else {
         submitBtn.disabled = false;
