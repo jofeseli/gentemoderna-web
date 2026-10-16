@@ -125,12 +125,27 @@ module.exports = async function handler(req, res) {
     // la hoja. Si no hay webhook configurado, esto no hace nada y el alta
     // sigue siendo correcta.
     const hook = process.env.MAKE_WEBHOOK_URL;
+
+    // ¿Quien invita está de verdad en la lista? Solo así se le manda el regalo,
+    // para no escribir nunca a una dirección que alguien haya puesto al azar.
+    let invitadorEnLista = false;
+    const inv = invitador.toLowerCase();
+    if (hook && inv && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inv) && inv !== email.toLowerCase()) {
+      try {
+        const r = await fetch(`https://api.systeme.io/api/contacts?email=${encodeURIComponent(inv)}`, { method: "GET", headers });
+        const d = await r.json();
+        invitadorEnLista = Array.isArray(d?.items) && d.items.some((c) => String(c?.email || "").toLowerCase() === inv);
+      } catch (e) {
+        console.error("No se pudo comprobar el invitador:", e.message);
+      }
+    }
+
     if (hook && (invitador || aciertos)) {
       try {
         await fetch(hook, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, invitador, aciertos, page, fecha: new Date().toISOString() }),
+          body: JSON.stringify({ email, invitador, invitadorEnLista, aciertos, page, fecha: new Date().toISOString() }),
         });
       } catch (e) {
         console.error("Webhook Make no disponible:", e.message);
