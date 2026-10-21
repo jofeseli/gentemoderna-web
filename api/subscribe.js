@@ -88,10 +88,12 @@ module.exports = async function handler(req, res) {
     const createData = await createRes.json();
 
     let contactId = createData?.id;
+    let yaSuscrito = false;
 
     if (!createRes.ok) {
       const detail = JSON.stringify(createData);
       if (detail.includes("ya se ha utilizado") || detail.includes("already")) {
+        yaSuscrito = true;
         const searchRes = await fetch(
           `https://api.systeme.io/api/contacts?email=${encodeURIComponent(email)}`,
           { method: "GET", headers }
@@ -145,7 +147,7 @@ module.exports = async function handler(req, res) {
         await fetch(hook, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, invitador, invitadorEnLista, aciertos, page, fecha: new Date().toISOString() }),
+          body: JSON.stringify({ email, yaSuscrito, invitador, invitadorEnLista, aciertos, page, fecha: new Date().toISOString() }),
         });
       } catch (e) {
         console.error("Webhook Make no disponible:", e.message);
