@@ -82,6 +82,13 @@
       <p>Once preguntas sobre tu dinero. Vale sí o no.</p>
       <p><strong>Sí</strong> es que sabes la cifra exacta ahora mismo, sin mirar nada. «Más o menos» es un no. Dos minutos.</p>
 
+      <section id="cerrado" hidden>
+        <p><strong>Este regalo ya no está disponible.</strong></p>
+        <p>Estuvo abierto hasta el lunes 26 de octubre a las 23:59. Lo prometido es deuda.</p>
+        <p>Si quieres recibir las cartas de Gente Moderna, dos por semana, puedes apuntarte en la portada.</p>
+        <p><a class="button" href="index.html">Ir a la portada</a></p>
+      </section>
+
       <div id="quiz"></div>
 
       <div class="quizbar">
@@ -127,6 +134,14 @@
 
     <script>
       (function () {
+        // Cierre: lunes 26 de octubre de 2026 a las 23:59, hora de España
+        if (Date.now() > Date.parse("2026-10-26T23:59:59+01:00")) {
+          document.getElementById("cerrado").hidden = false;
+          ["quiz", "resultado"].forEach(function (id) { var el = document.getElementById(id); if (el) el.remove(); });
+          var barra = document.querySelector(".quizbar"); if (barra) barra.remove();
+          document.querySelectorAll("main > p").forEach(function (p) { p.remove(); });
+          return;
+        }
         var PREGUNTAS = [
           "¿Cuánto pagas al año por el seguro del coche? Con los céntimos.",
           "¿Qué día te lo cobran?",
