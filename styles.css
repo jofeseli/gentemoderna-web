@@ -1,13 +1,13 @@
 /* ─── Tokens ─────────────────────────────────────────────── */
 :root {
   color-scheme: light;
-  --bg:          #faf9f6;
-  --text:        #141414;
-  --muted:       #6b6560;
-  --soft:        #f0ece3;
-  --line:        #e0d9ce;
-  --accent:      #0e5c47;
-  --accent-light:#e6f2ed;
+  --bg:          #fbfbfa;
+  --text:        #121212;
+  --muted:       #63615e;
+  --soft:        #f1f0ee;
+  --line:        #e3e1de;
+  --accent:      #c501e2;
+  --accent-light:#f9eafc;
   --accent-ink:  #ffffff;
   --field:       #ffffff;
   --max:         700px;
@@ -18,15 +18,15 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg:          #0e0d0c;
-  --text:        #f2ede4;
-  --muted:       #9e9690;
-  --soft:        #1c1a18;
-  --line:        #312e2a;
-  --accent:      #c9b56a;
-  --accent-light:#26220e;
-  --accent-ink:  #100f0d;
-  --field:       #181614;
+  --bg:          #121212;
+  --text:        #f3f2f0;
+  --muted:       #a09d99;
+  --soft:        #1d1c1b;
+  --line:        #33312f;
+  --accent:      #e08af0;
+  --accent-light:#2a1530;
+  --accent-ink:  #121212;
+  --field:       #1a1918;
 }
 
 /* ─── Reset ──────────────────────────────────────────────── */
