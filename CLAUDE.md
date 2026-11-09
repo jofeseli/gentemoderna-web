@@ -329,7 +329,7 @@ Verificado en producción:
 1. **Audio lead magnet** — Jof graba nota de voz. Añadir al email de bienvenida cuando esté listo. No añadir promesa en la web hasta que exista.
 
 ### Limpieza
-2. **Borrar los 77 contactos del ataque** — Filtrar en Systeme.io por fecha de registro 29/06/2026–06/07/2026 y eliminar en bloque. Revisar antes `roys18martinez@hotmail.com` (posible falso positivo). Lista completa en `limpieza-contactos.md`.
+2. ~~Borrar los contactos del ataque~~ — **HECHO el 09/11/2026**: quedaban 50 (los otros 27 ya habían desaparecido); cruzados uno a uno con `limpieza-contactos.md`, todos bots, borrados. Lista: **410 contactos** tras la limpieza.
 3. **Basura en `assets/`** — 604 MB en `Banana_men.tif` + 8 copias sueltas `banana-men-0..7.jpg` que no usa ninguna página. Ya están en `.gitignore`, pero conviene borrarlas del disco.
 
 ### Antispam (opcional, no urgente)
