@@ -1,10 +1,16 @@
 # DESIGN.md — Sistema de diseño Gente Moderna
 
-> Editorial limpio. Tipografía serif en cuerpo, sans en UI. Dos columnas de color (crema/oscuro en claro, casi negro/dorado en oscuro). Sin decoración superflua.
+> Editorial limpio. Tipografía serif en cuerpo, sans en UI. Paleta de la identidad Gente Moderna: blanco roto y tinta en claro, tinta y blanco roto en oscuro, magenta como único acento. Sin decoración superflua.
 >
 > **Recordatorio**: leer este archivo antes de cualquier cambio visual. Los tokens no se cambian sin justificación.
 
 ---
+
+## Identidad (desde nov 2026)
+
+La web se va acercando poco a poco a la identidad de los reels: propósito «ser más libre», modo claro y sobrio, fondo `#FBFBFA`, tinta `#121212`, magenta `#C501E2` solo para lo que manda. Nada de neón, casino ni cripto. Logotipo escrito a mano; la mascota (panda rojo) es de uso reservado.
+
+- Paso 1 (9 nov 2026): paleta. Verde y dorado fuera, magenta como acento.
 
 ## Dirección visual
 
@@ -20,13 +26,13 @@ Definidos en `:root` de `styles.css`. **No tocar sin discutir primero.**
 
 | Token | Valor | Uso |
 |-------|-------|-----|
-| `--bg` | `#faf9f6` | Fondo general |
-| `--text` | `#141414` | Texto principal |
-| `--muted` | `#6b6560` | Texto secundario, leades, notas |
-| `--soft` | `#f0ece3` | Superficies suaves (hover, fondos secundarios) |
-| `--line` | `#e0d9ce` | Bordes, separadores |
-| `--accent` | `#0e5c47` | Verde oscuro — énfasis, botones, eyebrows |
-| `--accent-light` | `#e6f2ed` | Fondo suave del acento |
+| `--bg` | `#fbfbfa` | Fondo general |
+| `--text` | `#121212` | Texto principal |
+| `--muted` | `#63615e` | Texto secundario, leades, notas |
+| `--soft` | `#f1f0ee` | Superficies suaves (hover, fondos secundarios) |
+| `--line` | `#e3e1de` | Bordes, separadores |
+| `--accent` | `#c501e2` | Magenta de la marca — eyebrows, hover, foco. Solo para lo que manda; nunca en bloques grandes |
+| `--accent-light` | `#f9eafc` | Fondo suave del acento |
 | `--accent-ink` | `#ffffff` | Texto sobre acento |
 | `--field` | `#ffffff` | Fondo de inputs |
 
@@ -34,15 +40,15 @@ Definidos en `:root` de `styles.css`. **No tocar sin discutir primero.**
 
 | Token | Valor | Uso |
 |-------|-------|-----|
-| `--bg` | `#0e0d0c` | Fondo casi negro |
-| `--text` | `#f2ede4` | Texto principal |
-| `--muted` | `#9e9690` | Texto secundario |
-| `--soft` | `#1c1a18` | Superficies suaves |
-| `--line` | `#312e2a` | Bordes |
-| `--accent` | `#c9b56a` | Dorado — acento en oscuro |
-| `--accent-light` | `#26220e` | Fondo suave del acento oscuro |
-| `--accent-ink` | `#100f0d` | Texto sobre dorado |
-| `--field` | `#181614` | Fondo de inputs |
+| `--bg` | `#121212` | Tinta |
+| `--text` | `#f3f2f0` | Texto principal |
+| `--muted` | `#a09d99` | Texto secundario |
+| `--soft` | `#1d1c1b` | Superficies suaves |
+| `--line` | `#33312f` | Bordes |
+| `--accent` | `#e08af0` | Magenta suavizado para fondo oscuro |
+| `--accent-light` | `#2a1530` | Fondo suave del acento oscuro |
+| `--accent-ink` | `#121212` | Texto sobre magenta |
+| `--field` | `#1a1918` | Fondo de inputs |
 
 ### Tipografía
 
