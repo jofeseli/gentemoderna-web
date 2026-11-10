@@ -34,7 +34,7 @@ HTML estático + CSS vanilla + JS mínimo. Sin frameworks, sin build step. Despl
 Tokens definidos en `:root` dentro de `styles.css`:
 
 - `--bg`, `--text`, `--muted`, `--soft`, `--line` — superficies y texto
-- `--accent`, `--accent-light`, `--accent-ink` — color de énfasis (verde oscuro en claro, dorado en oscuro)
+- `--accent`, `--accent-light`, `--accent-ink` — color de énfasis (magenta #c501e2 en claro, magenta suave #e08af0 en oscuro; ver DESIGN.md)
 - `--field` — fondo de inputs
 - `--sans`, `--serif` — familias tipográficas
 - `--max` (700px), `--wide` (960px) — anchos de columna
@@ -345,3 +345,8 @@ Verificado en producción:
 - NUNCA: "no soy un gurú", "no vendo humo", "sin recetas ni gurús", "sin ruido"
 - NUNCA quitar ninguno de los 4 pilares del eyebrow: Claridad, dinero, decisiones, libertad
 - Estilo: frases cortas, párrafos individuales, humor seco puntual, sin disculparse por existir
+
+## Sesión 2026-11-10 — Identidad visual, paso 1
+
+- Paleta de la identidad de los reels: fondo #fbfbfa, tinta #121212, magenta #c501e2 como único acento (verde y dorado fuera). Solo cambia `styles.css` (tokens) y `theme-color`.
+- Siguientes pasos, uno cada vez y con vista previa: 2) Roboto Condensed en la interfaz, 3) firma de cierre (logo + rayita magenta + gentemoderna.com), 4) «libre» en magenta, 5) imágenes para compartir.
