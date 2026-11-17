@@ -1,0 +1,56 @@
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Roboto+Condensed:wght@700;800&family=Roboto:wght@400;500;700&display=swap">
+<style>
+.gmx{--p:#FBFBFA;--i:#121212;--m:#5E5B57;--l:#DDDAD4;--w:#F1EFEB;--k:#C501E2;background:var(--p);color:var(--i);font-family:Roboto,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;max-width:760px;margin:0 auto;padding:28px 20px 40px;box-sizing:border-box;text-align:left}
+.gmx *{box-sizing:border-box}
+.gmx .top{display:flex;align-items:center;gap:14px;border-bottom:2px solid var(--i);padding-bottom:12px;margin-bottom:28px}
+.gmx .top img{height:44px;width:auto;display:block}
+.gmx .top b{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:15px;line-height:1.1;border-left:2px solid var(--i);padding-left:12px}
+.gmx .top span{margin-left:auto;font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--m)}
+.gmx h1,.gmx h2,.gmx h3{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;text-transform:uppercase;margin:0;line-height:1;color:var(--i)}
+.gmx h1{font-size:clamp(34px,7vw,56px);font-weight:800;letter-spacing:-.01em;margin-bottom:14px}
+.gmx h2{font-size:24px;font-weight:800;letter-spacing:.02em;margin:38px 0 14px}
+.gmx p{margin:0 0 12px}
+.gmx .lead{font-size:19px}
+.gmx .hand{font-family:Caveat,'Segoe Print','Bradley Hand',cursive;color:#45423E;font-size:24px;line-height:1.15;transform:rotate(-1.2deg);transform-origin:left;display:inline-block}
+.gmx .hand b{color:var(--k)}
+.gmx .steps{list-style:none;padding:0;margin:0;border-top:2px solid var(--i);counter-reset:s}
+.gmx .steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--l)}
+.gmx .steps li:before{content:counter(s);font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:30px;line-height:1}
+.gmx .steps strong{display:block}
+.gmx .key{border:2px solid var(--i);padding:20px;display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;margin:22px 0}
+.gmx .key small{display:block;font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--m)}
+.gmx .key code{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;font-size:38px;letter-spacing:.02em;color:var(--i);background:none;padding:0}
+.gmx .btn{display:inline-block;font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:16px;padding:13px 22px;border:2px solid var(--i);background:var(--i);color:var(--p)!important;text-decoration:none!important;cursor:pointer;border-radius:0;line-height:1.2}
+.gmx .btn:hover{background:var(--k);border-color:var(--k)}
+.gmx .btn.ghost{background:transparent;color:var(--i)!important}
+.gmx .btn.ghost:hover{background:var(--i);color:var(--p)!important}
+.gmx .band{background:var(--i);color:var(--p);padding:22px;margin:26px 0;display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between}
+.gmx .band h3{color:var(--p);font-size:26px;font-weight:800}
+.gmx .band .btn{background:var(--p);color:var(--i)!important;border-color:var(--p)}
+.gmx .band .btn:hover{background:var(--k);border-color:var(--k);color:#fff!important}
+.gmx .note{background:var(--w);border-left:4px solid var(--i);padding:14px 16px;margin:18px 0}
+.gmx .two{display:grid;grid-template-columns:1fr 1fr;gap:20px 28px}
+@media(max-width:600px){.gmx .two{grid-template-columns:1fr}.gmx .key code{font-size:30px}}
+.gmx .card{border-top:6px solid var(--i);padding-top:10px}
+.gmx .card h3{font-size:19px;margin-bottom:6px}
+.gmx .video{aspect-ratio:16/9;background:var(--w);border:2px dashed var(--i);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;margin:6px 0 10px}
+.gmx .firma{font-family:'Roboto Condensed','Arial Narrow',Arial,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:13px;border-top:3px solid var(--k);padding-top:10px;margin-top:40px;display:block;width:fit-content}
+.gmx .firma i{font-style:normal;color:var(--k)}
+.gmx a{color:var(--i)}
+</style>
+<div class="gmx"><div class="top"><img src="https://www.gentemoderna.com/assets/logo-negro.png" alt="Gente Moderna"><b>Mapa<br>de Fugas</b><span>Lección 1 de 4</span></div>
+<h1>Abre tu mapa</h1>
+<p class="lead">Ya lo tienes. En dos minutos estás viendo por dónde se te va el dinero.</p>
+<div class="key"><div><small>Tu clave</small><code>menosfugas</code></div>
+<a class="btn" href="https://www.gentemoderna.com/mapa/" target="_blank" rel="noopener">Abrir mi Mapa de Fugas</a></div>
+<ol class="steps">
+<li><div><strong>Pulsa el botón y escribe la clave.</strong>Solo te la pide la primera vez en cada navegador. Guarda la dirección en favoritos: gentemoderna.com/mapa</div></li>
+<li><div><strong>Mira el ejemplo.</strong>Al entrar verás los números de alguien inventado. Sirve para que veas cómo queda.</div></li>
+<li><div><strong>Sube tu extracto.</strong>En «Subir extracto», el archivo de tu banco. Si no te deja, ábrelo con Excel o Numbers, copia las filas y pégalas. En la lección 2 tienes cómo sacarlo.</div></li>
+</ol>
+<div class="note"><strong>Tus movimientos no salen de tu navegador.</strong> No hay cuenta, no hay servidor y yo no veo nada. Por eso mismo, si borras los datos del navegador se pierden: guarda una copia desde «Subir extracto» de vez en cuando.</div>
+<h2>Si algo no va</h2>
+<p>Escríbeme a <a href="mailto:jof@gentemoderna.com">jof@gentemoderna.com</a> con el nombre de tu banco y lo arreglo. Cada banco exporta a su manera y quiero que el tuyo funcione.</p>
+<p class="hand">Empieza por <b>Lo que se repite</b>. Es donde más duele.</p>
+<div class="firma">Claridad. Decisiones. Dinero. <i>Libertad.</i></div></div>
