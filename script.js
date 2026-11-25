@@ -109,7 +109,7 @@ document.querySelectorAll("[data-letters-form]").forEach((form) => {
   el.className = "cookie-notice";
   el.innerHTML =
     "<p>Esta página no usa cookies. Su único objetivo es tu email. ¿Se nota?</p>" +
-    '<div style="display:flex;gap:8px;flex-shrink:0">' +
+    '<div class="cookie-actions">' +
     '<button class="button" type="button" data-dismiss>Sí, se nota un poco</button>' +
     '<button class="button secondary" type="button" data-dismiss>No, no lo había notado</button>' +
     '</div>';
