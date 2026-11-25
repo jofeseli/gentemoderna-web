@@ -608,6 +608,11 @@ ul.clean li {
   line-height: 1.5;
 }
 
+.cookie-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
 .cookie-notice .button {
   flex-shrink: 0;
   min-height: 34px;
@@ -631,6 +636,12 @@ ul.clean li {
     align-items: flex-start;
     gap: 12px;
   }
+  .cookie-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cookie-actions .button { width: 100%; }
 }
 
 /* ─── Mobile ─────────────────────────────────────────────── */
