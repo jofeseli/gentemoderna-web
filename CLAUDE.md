@@ -350,3 +350,9 @@ Verificado en producción:
 
 - Paleta de la identidad de los reels: fondo #fbfbfa, tinta #121212, magenta #c501e2 como único acento (verde y dorado fuera). Solo cambia `styles.css` (tokens) y `theme-color`.
 - Siguientes pasos, uno cada vez y con vista previa: 2) Roboto Condensed en la interfaz, 3) firma de cierre (logo + rayita magenta + gentemoderna.com), 4) «libre» en magenta, 5) imágenes para compartir.
+
+## Sesión 2026-11-25 — Identidad visual, paso 3 (firma) + fix banner móvil
+
+- **Firma de cierre** en el pie de las 7 páginas con footer: el texto gris «Gente Moderna» se sustituye por el logotipo escrito a mano + rayita magenta (`var(--accent)`) + `gentemoderna.com`, en línea. Clase `.footer-sign` + `.footer-logo .light/.dark` (blanco automático en modo oscuro) + `.sign-rule`. La página de ventas Mapa de Fugas no lleva pie, a propósito. Publicado.
+- **Fix banner no-cookies en móvil**: los dos botones iban en fila y el segundo se salía de pantalla. El `<div>` inline pasa a clase `.cookie-actions`; en móvil (≤640px) botones apilados a ancho completo; en escritorio siguen en fila. Publicado.
+- Identidad: pasos hechos 1 (paleta) y 3 (firma). Paso 2 (Roboto Condensed) descartado: mantiene la letra actual. Panda rojo sigue sin usar (reservado para un sitio con gancho: Banana, 404 o email de bienvenida).
