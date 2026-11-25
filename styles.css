@@ -684,3 +684,25 @@ ul.clean li {
     width: auto;
   }
 }
+
+/* ─── Firma de cierre (footer) ───────────────────────────── */
+.footer-sign {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.footer-logo {
+  display: block;
+  height: 34px;
+  width: auto;
+}
+.footer-logo.dark { display: none; }
+:root[data-theme="dark"] .footer-logo.light { display: none; }
+:root[data-theme="dark"] .footer-logo.dark  { display: block; }
+.sign-rule {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+}
+.sign-url { color: var(--muted); }
